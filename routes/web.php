@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('home.index');
 });
+
+Route::get('/login', 'loginController@index');
+Route::post('/login', 'loginController@verify');
+
+Route::get('/signup', function () {
+    return view('signup.index');
+});
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
