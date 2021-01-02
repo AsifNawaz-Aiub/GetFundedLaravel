@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('home.index');
+    return view('moderator.index');
 });
+Route::get('/moderator', 'moderatorController@index');
 
 Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
