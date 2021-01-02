@@ -178,32 +178,42 @@
             <th>Goal Date</th>
             <th>Status</th>
             <th>Created At</th>
+            <th>Updated At</th>
             <th>Action</th>
           </tr>
 
-          <% for(var i=0; i< EventList.length; i++ ){ %>
+          @for($i=0; $i < count($events); $i++)
             
           <tr id="rows">
-            <td><%= EventList[i].id %></td>
-            <td><%= EventList[i].eventName %></td>
-            <td><%= EventList[i].creatorId %></td>
-            <td><%= EventList[i].description %></td>
-            <td><%= EventList[i].goalAmount %></td>
-            <td><%= EventList[i].goalDate.toDateString() %></td>
-            <td><%= EventList[i].isApproved %></td>
-            <td><%= EventList[i].createdAt.toDateString() %></td>
-            <td>
-              <% if(EventList[i].isApproved==0 ){ %>
-              <a href="/moderator/approve/<%=EventList[i].id%>"class="w3-bar-item w3-button tablink" >Approve</a>
-              <a href="/moderator/decline/<%=EventList[i].id%>"class="w3-bar-item w3-button tablink">Decline</a>
-              <a href="/moderator/modify/<%=EventList[i].id%>"class="w3-bar-item w3-button tablink">Modify</a>
-              <% } else { %>
+            <td>{{$events[$i]['id']}}</td>
+            <td>{{$events[$i]['eventName']}}</td>
+        
+            <td>{{$events[$i]['creatorId']}}</td>
 
-              <a href="/moderator/modify/<%=EventList[i].id%> " class="w3-bar-item w3-button tablink">Modify</a>
-              <% } %>
+            <td>{{$events[$i]['description']}}</td>
+            
+            <td>{{$events[$i]['goalAmount']}}</td>
+         
+            <td>{{$events[$i]['goalDate']}}</td>
+          
+            <td>{{$events[$i]['isApproved']}}</td>
+
+            <td>{{$events[$i]['createdAt']}}</td>
+            <td>{{$events[$i]['updatedAt']}}</td>
+
+      
+            <td>
+              @if($events[$i]['isApproved']==0 )
+              <a href=""class="w3-bar-item w3-button tablink">Approve</a>
+              <a href=""class="w3-bar-item w3-button tablink">Decline</a>
+              <a href=""class="w3-bar-item w3-button tablink">Modify</a>
+              @else
+
+              <a href="" class="w3-bar-item w3-button tablink">Modify</a>
+              @endif
             </td>
           </tr>
-          <% } %>
+          @endfor
         </table>
         <a id="dlink"  style="display:none;"></a>
 
@@ -217,14 +227,14 @@
 
         <h2 style="text-align: center">Profile</h2>
         <table style="width: 50%;">
-      <tr> <td> <label>ID :</td> <td><%= userData[0].id  %>  </label> </td></tr>
-       <tr><td> <label>Name :</td><td> <%= userData[0].name  %>  </label> </td></tr>
-      <tr> <td> <label>User Name :</td><td> <%= userData[0].userName  %>  </label> </td></tr>
-       <tr><td> <label>Email :</td><td> <%= userData[0].email  %>  </label> </td></tr>
+      <tr> <td> <label>ID :</td> <td>  {{$users['id']}}  </label> </td></tr>
+       <tr><td> <label>Name :</td><td>   {{$users['name']}}  </label> </td></tr>
+      <tr> <td> <label>User Name :</td><td>   {{$users['userName']}} </label> </td></tr>
+       <tr><td> <label>Email :</td><td> {{$users['email']}}   </label> </td></tr>
         </table>
 
         <h4>Notifications :</h4> 
-        <p style="color: #4CAF50;" ><%= success  %> </p>
+        <p style="color: #4CAF50;" >success </p>
 
 
 
