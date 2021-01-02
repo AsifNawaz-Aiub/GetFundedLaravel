@@ -12,16 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('home.index');
+    return redirect('/login');
 });
 
 Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
+Route::get('/logout', 'logoutController@index');
 
 Route::get('/signup', function () {
     return view('signup.index');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index');
+Route::group(['middleware'=>['sess']], function(){
+    Route::group(['middleware'=>['admin']], function(){
+        //Route::get('/admin', 'adminController@index')->name('admin.index');
+    });
 });
+Route::get('/admin', 'adminController@index')->name('admin.index');
