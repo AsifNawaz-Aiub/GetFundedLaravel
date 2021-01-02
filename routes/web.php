@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    return redirect('/login');
     
 });
 Route::get('/moderator', 'moderatorController@index');
@@ -25,14 +26,16 @@ Route::post('/modify/{id}', 'moderatorController@modified')->name('event.modifie
 Route::get('/decline/{id}', 'moderatorController@decline')->name('event.decline');;
 Route::post('/decline/{id}', 'moderatorController@declined')->name('event.declined');;
 
-
 Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
+Route::get('/logout', 'logoutController@index');
 
 Route::get('/signup', function () {
     return view('signup.index');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index');
+Route::group(['middleware'=>['sess']], function(){
+    Route::group(['middleware'=>['admin']], function(){
+        Route::get('/admin', 'adminController@index')->name('admin.index');
+    });
 });
