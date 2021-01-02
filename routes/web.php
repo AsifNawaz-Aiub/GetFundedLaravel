@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 Route::get('/moderator', 'moderatorController@index');
 
+Route::get('/moderator', 'moderatorController@index');
+
 Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
 Route::get('/logout', 'logoutController@index');
@@ -26,7 +28,6 @@ Route::get('/signup', function () {
 
 Route::group(['middleware'=>['sess']], function(){
     Route::group(['middleware'=>['admin']], function(){
-        //Route::get('/admin', 'adminController@index')->name('admin.index');
+        Route::get('/admin', 'adminController@index')->name('admin.index');
     });
 });
-Route::get('/admin', 'adminController@index')->name('admin.index');
