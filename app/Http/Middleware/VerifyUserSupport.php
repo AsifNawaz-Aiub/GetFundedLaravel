@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class VerifyUserType
+class VerifyUserSupport
 {
     /**
      * Handle an incoming request.
