@@ -16,8 +16,26 @@ class moderatorController extends Controller
         $events = Event::all();
         
         return view('moderator.index')->with('users', $users)->with('events', $events);
-    //return view('moderator.index',$user);
+        //return view('moderator.index',$user);
     }
+
+    public function approve($id){
+
+        $event = Event::find($id);
+        return view('moderator.approve', $event);
+        
+    }
+
+    public function approved($id){
+        $event = Event::find($id);
+
+        $event->isApproved = 1;
+        $event->save();
+        return redirect('/moderator');
+       
+    }
+    
+    
     
    
 

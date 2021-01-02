@@ -204,12 +204,12 @@
       
             <td>
               @if($events[$i]['isApproved']==0 )
-              <a href=""class="w3-bar-item w3-button tablink">Approve</a>
-              <a href=""class="w3-bar-item w3-button tablink">Decline</a>
-              <a href=""class="w3-bar-item w3-button tablink">Modify</a>
+              <a href="{{route('event.approve', $events[$i]['id'])}}"class="w3-bar-item w3-button tablink">Approve</a>
+              <a href="{{route('event.decline', $events[$i]['id'])}}"class="w3-bar-item w3-button tablink">Decline</a>
+              <a href="{{route('event.modify', $events[$i]['id'])}}"class="w3-bar-item w3-button tablink">Modify</a>
               @else
 
-              <a href="" class="w3-bar-item w3-button tablink">Modify</a>
+              <a href="{{route('event.modify', $events[$i]['id'])}}" class="w3-bar-item w3-button tablink">Modify</a>
               @endif
             </td>
           </tr>
@@ -390,6 +390,36 @@
     document.getElementById("defaultOpen").click();
   </script>
 
-<script> 
+
+
+<script>  
+  $(document).ready(function(){  
+       $('#search').keyup(function(){  
+            search_table($(this).val());  
+       });  
+       function search_table(value){  
+            $('#events_table #rows').each(function(){  
+                 var found = 'false'; 
+           
+                 $(this).each(function(){  
+                      if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                      {  
+                           found = 'true';  
+                      }  
+                 });  
+                 if(found == 'true')  
+                 {  
+                      $(this).show();  
+                 }  
+                 else  
+                 {  
+                      $(this).hide();  
+                 }  
+            });  
+       }  
+  });  
+</script> 
+
+
 
 </html>
