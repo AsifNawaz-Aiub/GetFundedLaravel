@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return redirect('/login');
 });
+Route::get('/moderator', 'moderatorController@index');
 
 Route::get('/moderator', 'moderatorController@index');
 
