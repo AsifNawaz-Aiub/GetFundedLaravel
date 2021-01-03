@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\loginRequest;
 use Illuminate\Support\Facades\DB;
 use App\User;
 
@@ -11,7 +12,7 @@ class loginController extends Controller
         return view('login.index');
     }
 
-    public function verify(Request $req){
+    public function verify(loginRequest $req){
         $user = User::where('password', $req->password)
                     ->where(function($query) use($req) {
                         $query->where('email', $req->uid)
@@ -29,8 +30,8 @@ class loginController extends Controller
             else if($req->session()->get('type') == 'moderator'){
                 return redirect('/moderator');
             }
-            else if($req->session()->get('type') == 'usersupport'){
-                return redirect('/usersupport');
+            else if($req->session()->get('type') == 'userSupport'){
+                return redirect('/userSupport');
             }
             else if($req->session()->get('type') == 'user'){
                 return redirect('/user');

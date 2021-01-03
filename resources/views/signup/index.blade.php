@@ -20,13 +20,21 @@
       <div class="col col-sm-7 col-lg-5 col-xl-3 mt-5 mb-5" id="login-box">
         <h3>Signup</h3>
         <br />
-        <p class="text-danger"><%= alert %></p>
-        <p class="text-danger">
-          <% if (error){%>
-            <%=error[0].msg%>
-          <%}%>
+        <p class="text-success">
+          {{session('msg')}}
         </p>
-        <form method="post" action="/signup">
+        <p class="text-danger">
+          {{session('error')}}
+        </p>
+        @if (count($errors) > 0)
+          <p class="text-danger">
+            @foreach ($errors->all() as $error)
+              {{ $error }}<br>
+            @endforeach
+          </p>
+        @endif
+        <form method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
           <input
             class="form-control"
             type="text"
@@ -60,7 +68,7 @@
             class="form-control"
             type="password"
             placeholder="Confirm Password"
-            name="confirmPassword"
+            name="password_confirmation"
             autocomplete="off"
             id="confirmPassword"
           /><br />
@@ -75,7 +83,7 @@
     </div>
   </body>
   <!-- Password match check -->
-  <script>
+  <!-- <script>
     var password = document.getElementById("password"),
       confirm_password = document.getElementById("confirmPassword");
 
@@ -89,6 +97,6 @@
 
     password.onchange = validatePassword;
     confirmPassword.onkeyup = validatePassword;
-  </script>
+  </script> -->
 </html>
 
