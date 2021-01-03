@@ -20,7 +20,7 @@ class VerifyUserSupport
             return $next($request);
         }else{
             $request->session()->flash('error', 'Please login as a User Support first...');
-            return redirect()->route('home.index');
+            return redirect()->route('login.index');
         }
     }
 }
