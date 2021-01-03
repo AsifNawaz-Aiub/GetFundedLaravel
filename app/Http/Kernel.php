@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
         'sess' =>  \App\Http\Middleware\VerifySession::class,
         'admin' =>  \App\Http\Middleware\VerifyAdmin::class,
         'moderator' =>  \App\Http\Middleware\VerifyModerator::class,
+        'user' =>  \App\Http\Middleware\VerifyUser::class,
         'userSupport' =>  \App\Http\Middleware\VerifyUserSupport::class,
     ];
 }

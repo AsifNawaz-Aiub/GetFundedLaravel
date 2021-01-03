@@ -44,3 +44,22 @@ Route::group(['middleware'=>['sess']], function(){
     });
 });
 
+Route::group(['middleware'=>['sess']], function(){
+    Route::group(['middleware'=>['user']], function(){
+        Route::get('/user', 'userController@index')->name('user.index');
+
+        Route::get('/viewEvents', ['uses'=> 'userController@eventlist', 'as'=> 'user.viewEvents']);
+        Route::get('/createEvent', 'userController@createEvent')->name('user.createEvent');
+        Route::get('/approveDonation/{id}','userController@donationlist')->name('user.approveDonation');
+        Route::get('/myEvent', ['uses'=> 'userController@eventlistById', 'as'=> 'user.myEvent']);
+        Route::get('/eventEdit/{id}', 'userController@eventEdit')->name('user.eventEdit'); 
+        Route::get('/eventDelete/{id}', 'userController@eventDelete')->name('user.eventDelete');
+        Route::get('/eventDonate/{id}', ['uses'=> 'userController@eventdonatelist', 'as'=> 'user.eventDonate']);
+        Route::get('/donateToEvent/{id}', ['uses'=> 'userController@donateToEvent', 'as'=> 'user.donateToEvent']);
+        Route::get('/voteToEvent/{id}', ['uses'=> 'userController@voteToEvent', 'as'=> 'user.voteToEvent']);
+        Route::get('/commentToEvent/{id}', ['uses'=> 'userController@commentToEvent', 'as'=> 'user.commentToEvent']);
+        Route::get('/reportToEvent/{id}', ['uses'=> 'userController@reportToEvent', 'as'=> 'user.reportToEvent']);
+    
+
+    });
+});

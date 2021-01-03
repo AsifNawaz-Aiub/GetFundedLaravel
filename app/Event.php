@@ -11,5 +11,5 @@ class Event extends Model
     //public $timestamps = false;
 
    const CREATED_AT = "createdAt";
-    const UPDATED_AT = "updatedAt";
+   const UPDATED_AT = "updatedAt";
 }
