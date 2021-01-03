@@ -20,9 +20,8 @@ Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
 Route::get('/logout', 'logoutController@index');
 
-Route::get('/signup', function () {
-    return view('signup.index');
-});
+Route::get('/signup', 'signupController@index');
+Route::post('/signup', 'signupController@register');
 
 Route::group(['middleware'=>['sess']], function(){
     Route::group(['middleware'=>['admin']], function(){
