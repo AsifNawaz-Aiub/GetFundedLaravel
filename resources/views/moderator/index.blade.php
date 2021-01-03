@@ -227,10 +227,10 @@
 
         <h2 style="text-align: center">Profile</h2>
         <table style="width: 50%;">
-      <tr> <td> <label>ID :</td> <td>  {{$users['id']}}  </label> </td></tr>
-       <tr><td> <label>Name :</td><td>   {{$users['name']}}  </label> </td></tr>
-      <tr> <td> <label>User Name :</td><td>   {{$users['userName']}} </label> </td></tr>
-       <tr><td> <label>Email :</td><td> {{$users['email']}}   </label> </td></tr>
+        <tr> <td> <label>ID :</td> <td>  {{$users['id']}}  </label> </td></tr>
+        <tr><td> <label>Name :</td><td>   {{$users['name']}}  </label> </td></tr>
+        <tr> <td> <label>User Name :</td><td>   {{$users['userName']}} </label> </td></tr>
+        <tr><td> <label>Email :</td><td> {{$users['email']}}   </label> </td></tr>
         </table>
 
         <h4>Notifications :</h4> 
@@ -420,6 +420,129 @@
   });  
 </script> 
 
+<script>
+$( document ).ready(function() {
+	
+	// GET REQUEST
+	$("#gFeedaj").click(function(event){
+        event.preventDefault();
+        console.log("Clicked");
+		ajaxGet();
+  });
+  $("#loadreport").click(function(event){
+        event.preventDefault();
+        console.log("Clicked");
+		ajaxGet3();
+  });
+
+
+  $("#loadinbox").click(function(event){
+      var receiverId = $("#ridtext").val();
+      event.preventDefault();
+          console.log("Clicked");
+      if(receiverId){ajaxGet2(receiverId);} else{ alert("Fill The Box Please"); }
+    });
+	
+	// DO GET
+	function ajaxGet3(){
+   
+  
+    $.ajax({
+			      type : "GET",
+            url : "/moderator/excelsheet",
+            datatype : 'json',
+            
+			success: function(result){
+				$('#excelTable').empty();
+        var custList = "";
+        console.log("Ajjjjjjjjjjjaxxxxxxxx");
+       
+				$.each(result, function(i, result){
+					$('#excelTable').append(
+          
+          " <tr> <th>Event ID</th> <th>Total Donations </th></tr> <tr> <td style='text-align: center' >"+
+          result.eventId+"</td><td style='text-align: center'>" + result.sumfund + "</td> </tr>"
+          
+          
+          )
+				});
+				console.log("Success: ", result);
+			},
+			error : function(e) {
+				$("#excelTable").html("<strong>Error</strong>");
+				console.log("ERROR: ", e);
+			}
+		});	
+  }
+
+  function ajaxGet(){
+   
+  
+   $.ajax({
+           type : "GET",
+           url : "/moderator/feed",
+           datatype : 'json',
+           
+     success: function(result){
+       $('#getfeed table').empty();
+       var custList = "";
+       console.log("Ajjjjjjjjjjjaxxxxxxxx");
+      
+       $.each(result, function(i, result){
+         $('#getfeed .getfeeds').append(
+           
+         " <tr> <th>Event Name</th> <th>ID</th><th>Creator ID</th><th>Description</th><th>Category ID</th> <th>Goal Amount</th><th>Goal Date</th><th>Created At</th><th>Action</th> </tr> <tr> <td>"+
+         result.eventName+"</td>" + " <td>" + result.id + "</td>"+ " <td>" + result.creatorId + "</td>" + " <td>" + result.description + "</td>" + " <td>" + result.categoryId + "</td>" +" <td>" + result.goalAmount + "</td>" +" <td>" + result.goalDate + "</td>" +" <td>" + result.createdAt + "</td> <td><a href='/moderator/donate/"+result.id+"'class='w3-bar-item w3-button tablink' >Donate</a> </td> </tr> <br> <br> "
+         
+         
+         
+         )
+       });
+       console.log("Success: ", result);
+     },
+     error : function(e) {
+       $("#getfeed").html("<strong>Error</strong>");
+       console.log("ERROR: ", e);
+     }
+   });	
+ }
+  
+      // DO GET
+      function ajaxGet2(receiverId){
+      console.log("----------------");
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      $.ajax({
+              type : "GET",
+              url : "/api/"+receiverId,
+              data: {_token: CSRF_TOKEN},
+              datatype : 'json',
+              
+        success: function(data){
+          $('#msgdiv').empty();
+          var custList = "";
+          console.log("Ajjjjjjjjjjjaxxxxxxxx");
+          console.log(data);
+          $.each(JSON.parse(data), function(i,data){
+            $('#msgdiv').append(
+             "<div style='"+data.side+"'  > "+data.messageText+" </div> <br>"
+            
+            )
+          });
+          console.log("Success: ", data);
+        }
+       
+      });	
+    }
+
+
+  
+})
+
+
+  </script>
+
+
 
 
 </html>
+
