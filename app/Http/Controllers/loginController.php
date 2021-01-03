@@ -31,7 +31,7 @@ class loginController extends Controller
                 return redirect('/moderator');
             }
             else if($req->session()->get('type') == 'userSupport'){
-                return redirect('/usersupport');
+                return redirect('/userSupport');
             }
             else if($req->session()->get('type') == 'user'){
                 return redirect('/user');

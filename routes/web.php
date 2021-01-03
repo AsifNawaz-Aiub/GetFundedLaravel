@@ -70,3 +70,16 @@ Route::group(['middleware'=>['sess']], function(){
     });
 });
 
+Route::group(['middleware'=>['sess']], function(){
+    Route::group(['middleware'=>['userSupport']], function(){
+        Route::get('/userSupport', 'userSupportController@index')->name('userSupport.index');
+        Route::get('/allUser', ['uses'=> 'userSupportController@userlist', 'as'=> 'userSupport.allUser']);
+        Route::get('/userSupportProfile', 'userSupportController@profile')->name('userSupport.userSupportProfile');
+        Route::get('/userEvents/{id}', ['uses'=> 'userSupportController@userEventlist', 'as'=> 'userSupport.userEvents']);
+        Route::get('/userDetails/{id}', 'userSupportController@userEventDetails')->name('userSupport.userDetails');
+        Route::get('/viewEvents', ['uses'=> 'userSupportController@eventlist', 'as'=> 'userSupport.viewEvents']);
+        Route::get('/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
+        Route::get('/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+    });
+    
+});
