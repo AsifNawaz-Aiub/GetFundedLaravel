@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use App\Http\Requests\userRequest;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 //use Validator;
 use App\User;
 use App\Event;
 use App\Message;
 
+
 class moderatorController extends Controller
 {
     public function index(Request $req){
+       
+        
         $id =  $req->session()->get('id');
         $users = User::find($id);
         $events = Event::all();
@@ -81,7 +85,26 @@ class moderatorController extends Controller
         }
           
     }
+    public function getMsg($id, Request $req){
+        $sid =  $req->session()->get('id');
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/msg/'.$id.'/'.$sid);
+        //echo $res->getStatusCode();
+        // "200"
+        //echo $res->getHeader('content-type')[0];
+        // 'application/json; charset=utf8'
+       //echo $res->getBody();
+       
+      $d=$res->getBody();
     
+    
+    //echo $d;
+    
+    return response($d);
+    
+
+
+    }
    
 
     
