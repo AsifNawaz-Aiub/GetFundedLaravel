@@ -25,6 +25,13 @@
         <p class="text-danger">
           {{session('error')}}
         </p>
+        @if (count($errors) > 0)
+          <p class="text-danger">
+            @foreach ($errors->all() as $error)
+              {{ $error }}<br>
+            @endforeach
+          </p>
+        @endif
         <form method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <input
