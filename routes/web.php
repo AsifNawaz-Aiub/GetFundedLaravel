@@ -61,6 +61,13 @@ Route::group(['middleware'=>['sess']], function(){
         Route::get('/admin/events/delete/{id}', 'adminController@deleteEvent')->name('admin.deleteEvent');
         Route::get('/admin/events/donate/{id}', 'adminController@donateEvent')->name('admin.donateEvent');
         Route::post('/admin/events/donate/{id}', 'adminController@donateToEvent')->name('admin.donateToEvent');
+
+        Route::get('/admin/messages', 'adminController@messages')->name('admin.messages');
+        Route::post('/admin/messages/send', 'adminController@sendMessage')->name('admin.sendMessage');
+        Route::get('/admin/messages/{id}', 'adminController@convoMessages')->name('admin.convoMessages');
+
+        Route::get('/admin/reports', 'adminController@reports')->name('admin.reports');
+        Route::post('/admin/reports/donations/download', 'adminController@donationsReportDownload')->name('admin.donationsReportDownload');
     });
 });
 

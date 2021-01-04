@@ -7,9 +7,12 @@ use App\Http\Requests\updateUserRequest;
 use App\Http\Requests\updateEventRequest;
 use App\Http\Requests\donationRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Event;
 use App\Donation;
+use App\Message;
+use GuzzleHttp;
 
 class adminController extends Controller
 {
@@ -328,5 +331,76 @@ class adminController extends Controller
             $req->session()->flash('error', 'An error occurred. Could not donate.');
             return redirect('/admin/events/view/'.$id);
         }
+    }
+    //EVENTS
+
+    //MESSAGES
+
+    public function convoMessages(Request $req, $id){
+        $receiver = User::find($id);
+
+        $rightMessageList = Message::where('receiverId', $id)->where('senderId', $req->session()->get('id'))->get();
+        $leftMessageList = Message::where('receiverId', $req->session()->get('id'))->where('senderId', $id)->get();
+        
+        foreach ($leftMessageList as $leftMessage) {
+            $leftMessage->side = "float-left";
+        }
+
+        foreach ($rightMessageList as $rightMessage) {
+            $rightMessage->side = "float-right";
+        }
+
+        $messages = $leftMessageList->merge($rightMessageList);
+        $sortedMessages = $messages->sortBy('createdAt');
+
+        return view('admin.messages.convo')
+        ->with('receiver', $receiver)
+        ->with('senderId', $req->session()->get('id'))
+        ->with('messages', $sortedMessages);
+    }
+
+    public function sendMessage(Request $req){
+        $message = new Message();
+
+        $message->senderId = $req->session()->get('id');
+        $message->receiverId = $req->receiverId;
+        $message->messageText = $req->msg;
+
+        if($message->save()){
+            return response()->json([
+                'status' => 'success',
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+            ]);
+        }
+    }
+    //MESSAGES
+
+    //REPORTS
+    public function reports(){
+        return view('admin.reports.index');
+    }
+
+    public function donationsReportDownload(Request $req){
+        $client = new GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/admin/api/reports/donations/download');
+        // $fileString = (string)$res->getBody();//->download(public_path(). "/download/info.pdf", 'filename.pdf');
+        // Storage::disk(public_path)->put('Donation Report.xlsx', $fileString);
+
+        return response($res->getBody())
+                ->withHeaders([
+                    'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    'Cache-Control' => 'no-store, no-cache',
+                    'Content-Disposition' => 'attachment; filename="Donation Report.xlsx',
+                ]);
+
+        // $client = new Client();
+        // $resource = fopen('/path/to/file', 'w');
+        // $stream = GuzzleHttp\Psr7\stream_for($resource);
+        // $res = $client->request('GET', 'http://127.0.0.1:4000/admin/reports/donations/download', ['save_to' => $stream]);
+        // return $res->getStatusCode().$res->getHeader('content-type')[0].$res->getBody();
     }
 }
