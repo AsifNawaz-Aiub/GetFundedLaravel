@@ -52,6 +52,22 @@ Route::group(['middleware'=>['sess']], function(){
         Route::post('/admin/users/edit/{id}', 'adminController@updateUser')->name('admin.updateUser');
         Route::get('/admin/users/delete/{id}', 'adminController@deleteUser')->name('admin.deleteUser');
 
+        Route::get('/admin/events', 'adminController@events')->name('admin.events');
+        Route::get('/admin/events/view/{id}', 'adminController@viewEvent')->name('admin.viewEvent');
+        Route::get('/admin/events/approve/{id}', 'adminController@approveEvent')->name('admin.approveEvent');
+        Route::get('/admin/events/decline/{id}', 'adminController@declineEvent')->name('admin.declineEvent');
+        Route::get('/admin/events/edit/{id}', 'adminController@eventsEdit')->name('admin.eventsEdit');
+        Route::post('/admin/events/edit', 'adminController@updateEvent')->name('admin.updateEvent');
+        Route::get('/admin/events/delete/{id}', 'adminController@deleteEvent')->name('admin.deleteEvent');
+        Route::get('/admin/events/donate/{id}', 'adminController@donateEvent')->name('admin.donateEvent');
+        Route::post('/admin/events/donate/{id}', 'adminController@donateToEvent')->name('admin.donateToEvent');
+
+        Route::get('/admin/messages', 'adminController@messages')->name('admin.messages');
+        Route::post('/admin/messages/send', 'adminController@sendMessage')->name('admin.sendMessage');
+        Route::get('/admin/messages/{id}', 'adminController@convoMessages')->name('admin.convoMessages');
+
+        Route::get('/admin/reports', 'adminController@reports')->name('admin.reports');
+        Route::post('/admin/reports/donations/download', 'adminController@donationsReportDownload')->name('admin.donationsReportDownload');
     });
 });
 
