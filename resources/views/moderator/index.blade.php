@@ -137,6 +137,13 @@
     >
       Reports
     </button>
+    <button
+      class="w3-bar-item w3-button tablink" id="hh2"
+      onclick="openTab(event, 'history')"
+    >
+      History
+    </button>
+    
 
       <a
       class="w3-bar-item w3-button tablink"
@@ -144,6 +151,7 @@
     >
       Logout
     </a>
+
     </div>
     <div style="margin-left: 230px">
        
@@ -234,12 +242,19 @@
         </table>
 
        
-        <input type="button" value="Noti" id="hh2">
+      
+      
+
+      </div>
+      <div class="w3-container tab" id="history" style="display: none">
+        <h2 style="text-align: center; background-color: #4caf50">
+          Moderator Panel
+        </h2>
+
+        <h2 style="text-align: center">History</h2>
+       
+       
         <p style="color: #4CAF50;" id="hh1"> </p>
-
-        
-         
-
 
       </div>
       <div class="w3-container tab" id="Contact" style="display: none">
@@ -427,7 +442,8 @@
 $( document ).ready(function() {
   $("#hh2").click(function(event){
         event.preventDefault();
-        $('#hh1').append(" {{session('error')}} {{session('error2')}}");
+        $('#hh1').empty();
+        $('#hh1').append(" {{session('msg')}} </br> {{session('msg2')}}</br> {{session('msg3')}}</br> {{session('msg4')}}</br> {{session('msg5')}}");
   });
 
 	// GET REQUEST

@@ -20,7 +20,8 @@ class moderatorController extends Controller
         $id =  $req->session()->get('id');
         $users = User::find($id);
         $events = Event::all();
-        $req->session()->flash('error', 'Logged In');
+        $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
+        $req->session()->flash('msg', 'Logged In');
         return view('moderator.index')->with('users', $users)->with('events', $events);
         //return view('moderator.index',$user);
     }
@@ -37,6 +38,8 @@ class moderatorController extends Controller
 
         $event->isApproved = 1;
         $event->save();
+        $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
+        $req->session()->flash('msg5', 'Approved an Event');
         return redirect('/moderator');
        
     }
@@ -58,6 +61,8 @@ class moderatorController extends Controller
         $msg->messageText=  $req->message;
         if($msg->save()){
             $event->delete();
+            $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
+            $req->session()->flash('msg4', 'Declined an Event');
             return redirect('/moderator');
         }else{
             echo "error";
@@ -80,7 +85,8 @@ class moderatorController extends Controller
         $event->categoryId = $req->categoryId;
         $event->goalAmount    = $req->goalAmount;
         if($event->save()){
-            $req->session()->flash('error2', 'Event Modified');
+            $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
+            $req->session()->flash('msg2', 'Event Modified');
             return redirect('/moderator');
         }else{
             echo "error";
@@ -102,6 +108,8 @@ class moderatorController extends Controller
         $donate->eventId = $id;
         $donate->donationMessage = $req->message;
         if($donate->save()){
+            $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
+            $req->session()->flash('msg3', 'Donated');
             return redirect('/moderator');
         }else{
             echo "error";
