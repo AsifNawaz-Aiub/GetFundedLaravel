@@ -48,8 +48,8 @@ button:hover, a:hover {
 </style>
 </head>
 <body>
-<form method="post">
-
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="card">
   <img src="/abc/img/{{$image}}" id="img" style="width:100%">
   <br>

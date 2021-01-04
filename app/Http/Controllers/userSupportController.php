@@ -37,6 +37,20 @@ class userSupportController extends Controller
         $profile = User::find($id);
         return view('userSupport.editProfile', $profile);
     }
+    public function ProfileUpdate(Request $req){
+        $id = $req->session()->get('id');
+        $user = User::find($id);
+        $file = $req->file('image');
+
+        $user->name     = $req->name;
+        $user->userName = $req->userName;
+        $user->email    = $req->email;
+        $user->password = $req->password;
+        $user->image    = $file->getClientOriginalName();
+        $user->save();
+
+        return redirect()->route('userSupport.myProfile');
+    }
 
 
 }

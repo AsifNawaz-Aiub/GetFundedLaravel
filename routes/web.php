@@ -106,6 +106,7 @@ Route::group(['middleware'=>['sess']], function(){
         Route::get('/viewEvents', ['uses'=> 'userSupportController@eventlist', 'as'=> 'userSupport.viewEvents']);
         Route::get('/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
         Route::get('/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+        Route::post('/editProfile', 'userSupportController@profileUpdate');
     });
     
 });
