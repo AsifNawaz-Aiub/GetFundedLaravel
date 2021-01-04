@@ -446,10 +446,11 @@ $( document ).ready(function() {
 	// DO GET
 	function ajaxGet3(){
    
-  
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
 			      type : "GET",
-            url : "/moderator/excelsheet",
+            url : "/moderator/report",
+            data: {_token: CSRF_TOKEN},
             datatype : 'json',
             
 			success: function(result){
@@ -457,7 +458,7 @@ $( document ).ready(function() {
         var custList = "";
         console.log("Ajjjjjjjjjjjaxxxxxxxx");
        
-				$.each(result, function(i, result){
+				$.each(JSON.parse(result), function(i, result){
 					$('#excelTable').append(
           
           " <tr> <th>Event ID</th> <th>Total Donations </th></tr> <tr> <td style='text-align: center' >"+
@@ -477,10 +478,11 @@ $( document ).ready(function() {
 
   function ajaxGet(){
    
-  
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
    $.ajax({
            type : "GET",
            url : "/moderator/feed",
+           data: {_token: CSRF_TOKEN},
            datatype : 'json',
            
      success: function(result){
@@ -488,7 +490,7 @@ $( document ).ready(function() {
        var custList = "";
        console.log("Ajjjjjjjjjjjaxxxxxxxx");
       
-       $.each(result, function(i, result){
+       $.each(JSON.parse(result), function(i, result){
          $('#getfeed .getfeeds').append(
            
          " <tr> <th>Event Name</th> <th>ID</th><th>Creator ID</th><th>Description</th><th>Category ID</th> <th>Goal Amount</th><th>Goal Date</th><th>Created At</th><th>Action</th> </tr> <tr> <td>"+

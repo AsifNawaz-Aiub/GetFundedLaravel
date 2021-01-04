@@ -68,7 +68,12 @@ Route::group(['middleware'=>['sess']], function(){
         Route::get('/moderator/event/decline/{id}', 'moderatorController@decline')->name('event.decline');
         Route::post('/moderator/event/decline/{id}', 'moderatorController@declined')->name('event.declined');
 
-        Route::get('/api/{id}', 'moderatorController@getMsg')->name('event.approve');
+        Route::get('/moderator/donate/{id}', 'moderatorController@donate');
+        Route::post('/moderator/donate/{id}', 'moderatorController@donated');
+
+        Route::get('/api/{id}', 'moderatorController@getMsg');
+        Route::get('/moderator/feed', 'moderatorController@getFeed');
+        Route::get('/moderator/report', 'moderatorController@getReport');
     });
 });
 

@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use App\User;
 use App\Event;
 use App\Message;
+use App\Donation;
 
 
 class moderatorController extends Controller
@@ -85,10 +86,72 @@ class moderatorController extends Controller
         }
           
     }
+    public function donate($id){
+
+        $event = Event::find($id);
+        return view('moderator.donate', $event);
+        
+    }
+    public function donated($id, Request $req){
+
+        $donate = new Donation();
+
+        $donate->amount = $req->amount;
+        $donate->donorId = $req->session()->get('id');
+        $donate->eventId = $id;
+        $donate->donationMessage = $req->message;
+        if($donate->save()){
+            return redirect('/moderator');
+        }else{
+            echo "error";
+        }
+      
+        
+    }
     public function getMsg($id, Request $req){
         $sid =  $req->session()->get('id');
         $client = new \GuzzleHttp\Client();
         $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/msg/'.$id.'/'.$sid);
+        //echo $res->getStatusCode();
+        // "200"
+        //echo $res->getHeader('content-type')[0];
+        // 'application/json; charset=utf8'
+       //echo $res->getBody();
+       
+      $d=$res->getBody();
+    
+    
+    //echo $d;
+    
+    return response($d);
+    
+
+
+    }
+
+    public function getFeed(){
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/feed');
+        //echo $res->getStatusCode();
+        // "200"
+        //echo $res->getHeader('content-type')[0];
+        // 'application/json; charset=utf8'
+       //echo $res->getBody();
+       
+      $d=$res->getBody();
+    
+    
+    //echo $d;
+    
+    return response($d);
+    
+
+
+    }
+
+    public function getReport(){
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/excelsheet');
         //echo $res->getStatusCode();
         // "200"
         //echo $res->getHeader('content-type')[0];
