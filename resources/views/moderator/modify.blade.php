@@ -32,4 +32,7 @@
    
     <button type="submit" name="modify" class="btn btn-primary">Modify</button>
   </form>
+@foreach($errors->all() as $err)
+{{$err}} <br>
+@endforeach
 </div>

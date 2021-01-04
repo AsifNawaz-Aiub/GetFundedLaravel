@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-//use App\Http\Requests\userRequest;
+use App\Http\Requests\modifyRequest;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
-//use Validator;
+use Validator;
 use App\User;
 use App\Event;
 use App\Message;
@@ -13,14 +13,14 @@ use App\Donation;
 
 
 class moderatorController extends Controller
-{
+{  
+    
     public function index(Request $req){
        
-        
         $id =  $req->session()->get('id');
         $users = User::find($id);
         $events = Event::all();
-        
+        $req->session()->flash('error', 'Logged In');
         return view('moderator.index')->with('users', $users)->with('events', $events);
         //return view('moderator.index',$user);
     }
@@ -71,7 +71,7 @@ class moderatorController extends Controller
         return view('moderator.modify', $event);
         
     }
-    public function modified($id, Request $req){
+    public function modified($id, modifyRequest $req ){
 
         $event = Event::find($id);
 
@@ -80,6 +80,7 @@ class moderatorController extends Controller
         $event->categoryId = $req->categoryId;
         $event->goalAmount    = $req->goalAmount;
         if($event->save()){
+            $req->session()->flash('error2', 'Event Modified');
             return redirect('/moderator');
         }else{
             echo "error";

@@ -233,9 +233,12 @@
         <tr><td> <label>Email :</td><td> {{$users['email']}}   </label> </td></tr>
         </table>
 
-        <h4>Notifications :</h4> 
-        <p style="color: #4CAF50;" >success </p>
+       
+        <input type="button" value="Noti" id="hh2">
+        <p style="color: #4CAF50;" id="hh1"> </p>
 
+        
+         
 
 
       </div>
@@ -422,7 +425,11 @@
 
 <script>
 $( document ).ready(function() {
-	
+  $("#hh2").click(function(event){
+        event.preventDefault();
+        $('#hh1').append(" {{session('error')}} {{session('error2')}}");
+  });
+
 	// GET REQUEST
 	$("#gFeedaj").click(function(event){
         event.preventDefault();
@@ -540,9 +547,72 @@ $( document ).ready(function() {
   
 })
 
-
   </script>
 
+<script>  
+  $(document).ready(function(){  
+       $('#searchFeed').keyup(function(){  
+            search_table($(this).val());  
+       });  
+       function search_table(value){  
+            $('#gf tr').each(function(){  
+                 var found = 'false'; 
+                var x=this;
+                 $(this).each(function(){  
+                      if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                      {  
+                           found = 'true';  
+                      }  
+                 });  
+                 if(found == 'true')  
+                 {  
+                      $(x).show();  
+                 }  
+                 else  
+                 {   
+                      $(x).hide();  
+                 }  
+            });  
+       }  
+  });  
+</script>
+
+
+<script>
+var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").click();
+
+        }
+    })()
+
+
+    var tableToExcel2 = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+
+            document.getElementById("dlink2").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink2").download = filename;
+            document.getElementById("dlink2").click();
+
+        }
+    })()
+
+</script>
 
 
 
