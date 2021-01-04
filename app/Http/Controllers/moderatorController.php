@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\modifyRequest;
+use App\Http\Requests\donateRequest;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Validator;
@@ -99,7 +100,7 @@ class moderatorController extends Controller
         return view('moderator.donate', $event);
         
     }
-    public function donated($id, Request $req){
+    public function donated($id, donateRequest $req){
 
         $donate = new Donation();
 

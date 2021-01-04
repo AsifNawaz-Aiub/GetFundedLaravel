@@ -26,7 +26,7 @@
               name="amount"
               class="form-control"
               placeholder="Amount"
-              required
+              
             />
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">BDT</span>
@@ -43,6 +43,9 @@
           </div>
           <button type="submit" class="btn btn-success">Donate</button>
         </form>
+        @foreach($errors->all() as $err)
+         {{$err}} <br>
+        @endforeach
       </div>
     </div>
   </body>
