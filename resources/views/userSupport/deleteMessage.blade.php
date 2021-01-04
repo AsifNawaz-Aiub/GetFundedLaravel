@@ -43,21 +43,19 @@ button:hover, a:hover {
 </head>
 <body>
 
-<h2 style="text-align:center">My Profile</h2>
-
+<h2 style="text-align:center">Delete Message</h2>
 <div class="card">
-  <img src="{{$image}}" style="width:100%">
-  <h1>{{$name}}</h1>
-  <p class="title">{{$email}}</p>
+  <form method="post">
+  
+  <p class="title">Are you sure deleting this message?</p>
+  <p class="title"></p>
+  
   <div style="margin: 24px 0;">
-    <a href="https://github.com/AbdullahIsha"><i class="fa fa-github"></i></a> 
-    <a href="https://twitter.com/shahria72632736"><i class="fa fa-twitter"></i></a>  
-    <a href="https://www.linkedin.com/in/shahariar-isha-b49ba0175/"><i class="fa fa-linkedin"></i></a>  
-    <a href="https://www.facebook.com/shahriar.isha"><i class="fa fa-facebook"></i></a> 
+    <%= messagelist[0].messageText%>
   </div>
-  <a href="{{route('userSupport.editProfile')}}" id="dd">Edit</a><hr>
-  <a href="{{route('userSupport.index')}}" id="dd">Home</a>
+  <input type="submit" name="submit" value="Delete" id="dd">
+  </form>
 </div>
 
 </body>
-</html>
+</html>s
