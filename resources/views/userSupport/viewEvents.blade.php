@@ -4,7 +4,69 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="/abc/css/userSupport.css">
+<style type="text/css">
+  #card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,11 +83,11 @@
 </section>
 <section>
 <div class="sidebar">
-  <a href="/userSupport" class="w3-bar-item w3-button">Home</a>
-  <a href="/userSupport/allUser" class="w3-bar-item w3-button">Users</a>
-  <a style="background-color: lightgray" href="/userSupport/viewEvents" class="w3-bar-item w3-button">Events</a>
+  <a href="{{route('userSupport.index')}}" class="w3-bar-item w3-button">Home</a>
+  <a href="{{route('userSupport.allUser')}}" class="w3-bar-item w3-button">Users</a>
+  <a style="background-color: lightgray" href="{{route('userSupport.viewEvents')}}" class="w3-bar-item w3-button">Events</a>
   <a href="/userSupport/message" class="w3-bar-item w3-button">Message</a>
-  <a href="/userSupport/myProfile" class="w3-bar-item w3-button">My Profile</a>
+  <a href="{{route('userSupport.myProfile')}}" class="w3-bar-item w3-button">My Profile</a>
   <a href="/logout" class="w3-bar-item w3-button">logout</a>
 </div>
 <div  class="w3-container">
@@ -53,25 +115,27 @@
 
 <script>
 $( document ).ready(function() {
-	
-	// GET REQUEST
-	$("#AppEvents").click(function(event){
+  
+  // GET REQUEST
+  $("#AppEvents").click(function(event){
         event.preventDefault();
         console.log("Clicked");
-		ajaxGet();
-	});
-	
-	// DO GET
-	function ajaxGet(){
+    ajaxGet();
+  });
+  
+  // DO GET
+  function ajaxGet(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
-			type     : "GET",
+      type     : "GET",
       url      : "/userSupport/view",
+      data     : {_token: CSRF_TOKEN},
       datatype : 'json',
             
-			success: function(result){
-				$('#allEvents table').empty();
-				$.each(result, function(i, result){
-					$('#allEvents #events').append(
+      success: function(result){
+        $('#allEvents table').empty();
+        $.each(JSON.parse(result), function(i, result){
+          $('#allEvents #events').append(
           "<tr>"+
           "<td rowspan='4' height='150px'><img height='150' src='/abc/img/"+result.eventPicture+"'></td>"+
           "<td colspan='3'>" + result.description + "</td>" +
@@ -93,15 +157,15 @@ $( document ).ready(function() {
           "</td>"+
           "</tr>"
           )
-				});
-				console.log("Success: ", result);
-			},
-			error : function(e) {
-				$("#getfeed").html("<strong>Error</strong>");
-				console.log("ERROR: ", e);
-			}
-		});	
-	}
+        });
+        console.log("Success: ", result);
+      },
+      error : function(e) {
+        $("#getfeed").html("<strong>Error</strong>");
+        console.log("ERROR: ", e);
+      }
+    }); 
+  }
 })
 </script>
 </html>

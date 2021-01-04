@@ -45,7 +45,7 @@ button:hover, a:hover {
 
 <h2 style="text-align:center">User Profile</h2>
 <div class="card">
-  <img src="/abc/img/<%= users[0].image%>" style="width:100%">
+  <img src="/abc/img/{{$image}}" style="width:100%">
   <h1>{{$name}}</h1>
   <p class="title">{{$userName}}</p>
   <p class="title">{{$email}}</p>

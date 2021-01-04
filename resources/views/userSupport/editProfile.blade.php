@@ -48,8 +48,8 @@ button:hover, a:hover {
 </style>
 </head>
 <body>
-<form method="post">
-
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="card">
   <img src="/abc/img/{{$image}}" id="img" style="width:100%">
   <br>
@@ -72,7 +72,7 @@ button:hover, a:hover {
     
   </div>
   <p><input type="submit" name="submit" value="Done" id="dd" ></p>
-  <a id="dd" href="/userSupport/myProfile">Back</a>
+  <a id="dd" href="{{route('userSupport.myProfile')}}">Back</a>
 </div>
 </form>
 <script type="text/javascript">
