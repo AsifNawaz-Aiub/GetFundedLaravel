@@ -229,9 +229,6 @@ class userController extends Controller
     return response($data);
     }
 
-    public function messagetoUsersupport(){
-        return view('user.messageToUserSupport');
-    }
     public function messagetousersupport($id , Request $req){
         $messagetous = new Message();
 
