@@ -20,9 +20,10 @@ Report to Event
   <div> {{$eventPicture}}</div>
   <br>
 	  <form method="post">
+	  	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	    <div class="form-group">
 	      <label for="report">Report:</label>
-	      <input type="text" class="form-control" id="report" placeholder="Report..." name="report">
+	      <input type="text" class="form-control" id="message" placeholder="Report..." name="message">
 	    </div>
 	    <input type="submit" class="btn btn-primary" name="submit" value="Report">
           <a href="{{route('user.viewEvents')}}" class="btn btn-dark">Back</a>

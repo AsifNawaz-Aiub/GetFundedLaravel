@@ -2,7 +2,7 @@
 
 
 @section('title')
-Home Page
+View Event
 @endsection
 @section('content')
 <div style="margin-left:15%">
@@ -37,13 +37,13 @@ Home Page
 			<tr id="rows">
 				<td>{{$events[$i]['id']}}</td>
 				<td>{{$events[$i]['eventName']}}</td>
-				<td height="128px" width="200px"><img width="200px" height="128px" src="/abc/img/{{$events[$i]['eventPicture']}}"></td>
+				<td height="128px" width="200px"><img width="200px" height="128px" src="/img/{{$events[$i]['eventPicture']}}"></td>
 				<td>{{$events[$i]['description']}}</td>
 				<td>{{$events[$i]['categoryId']}}</td>
 				<td>{{$events[$i]['goalAmount']}}</td>
 				<td>{{$events[$i]['goalDate']}}</td>
-				<td width="180px">
-			  		<a class="btn btn-info" href="{{route('user.donateToEvent', $events[$i]['id'])}}">Donation</a>
+				<td width="100px">
+			  		<a class="btn btn-info" href="{{route('user.donateToEvent', $events[$i]['id'])}}">Donate</a>
 			  		<a class="btn btn-dark" href="{{route('user.voteToEvent', $events[$i]['id'])}}">Vote</a>
 			  		<a class="btn btn-success" href="{{route('user.commentToEvent', $events[$i]['id'])}}">Comment</a>
 			  		<a class="btn btn-danger" href="{{route('user.reportToEvent', $events[$i]['id'])}}">Report</a>

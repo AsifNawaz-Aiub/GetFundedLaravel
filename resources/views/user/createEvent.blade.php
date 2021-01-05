@@ -26,7 +26,7 @@ Create Event
 	      <input type="text" class="form-control" id="description" placeholder="description..." name="description" value="{{old('description')}}">
 	    </div>
 	    <div class="form-group">
-	      <label for="eventName">CategoryId:</label><br>
+	      <label for="CategoryId">CategoryId:</label><br>
 			<input type="radio" name="categoryId" value="0"> Study 
 			<input type="radio" name="categoryId" value="1"> Health
 			<input type="radio" name="categoryId" value="2"> Social

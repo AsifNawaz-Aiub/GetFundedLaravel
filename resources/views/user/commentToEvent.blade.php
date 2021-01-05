@@ -20,9 +20,10 @@ Comment to Event
   <div> {{$eventPicture}}</div>
   <br>
 	  <form method="post">
+	  	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	    <div class="form-group">
 	      <label for="Comment">Comment:</label>
-	      <input type="text" class="form-control" id="donate" placeholder="comment..." name="comment">
+	      <input type="text" class="form-control" id="comment" placeholder="comment..." name="commentText">
 	    </div>
 	    <input type="submit" class="btn btn-primary" name="submit" value="Comment">
           <a href="{{route('user.viewEvents')}}" class="btn btn-dark">Back</a>

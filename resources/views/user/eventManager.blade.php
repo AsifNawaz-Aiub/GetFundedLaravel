@@ -23,7 +23,6 @@ My Events
 	  <table  class="table table-hover" id="events">
 		<tr>
 			<th>Id</th>
-			<th>Manager Id</th>
 	        <th>Event Name</th>
 	        <th>Event Picture</th>
 	        <th>Description</th>
@@ -36,17 +35,13 @@ My Events
 
 			<tr id="rows">
 				<td>{{$events[$i]['id']}}</td>
-				<td>{{$events[$i]['managerId']}}</td>
 				<td>{{$events[$i]['eventName']}}</td>
 				<td height="128px" width="200px"><img width="200px" height="128px" src="/img/{{$events[$i]['eventPicture']}}"></td>
 				<td>{{$events[$i]['description']}}</td>
 				<td>{{$events[$i]['goalAmount']}}</td>
 				<td>{{$events[$i]['goalDate']}}</td>
 				<td width="100px">
-				  	<a class="btn btn-primary" href="{{route('user.eventEdit', $events[$i]['id'])}}">Edit</a> 
-			  		<a class="btn btn-dark" href="{{route('user.eventDelete', $events[$i]['id'])}}">Delete</a>  
-			  		<a class="btn btn-info" href="{{route('user.eventDonate', $events[$i]['id'])}}">Donation</a>
-			  		<a class="btn btn-danger" href="{{route('user.addEventManager', $events[$i]['id'])}}">Event Manager</a>  
+			  		<a class="btn btn-danger" href="{{route('user.approveDonation', $events[$i]['id'])}}">Approve</a>  
 			    </td>
 					
 			</tr>

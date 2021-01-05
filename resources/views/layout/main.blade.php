@@ -6,9 +6,6 @@
 	<title> @yield('title') </title>
 </head>
 <body>
-
-	<h1> @yield('head') </h1>
-
 	<div id="navbar">
 		 @yield('navbar')
 	</div>

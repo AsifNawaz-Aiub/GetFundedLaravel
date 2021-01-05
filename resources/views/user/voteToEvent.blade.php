@@ -21,12 +21,13 @@ Vote to Event
   <br>
 
     <form method="post">
+      <input type="hidden" name="_token" value="{{csrf_token()}}">
       <div class="radio">
         <label for="vote">
           <b>Vote:</b>
-          <input type="radio" id="vote" name="vote" value='1' checked> <a href="#" class="far fa-thumbs-up"></a>
+          <input type="radio" id="vote" name="val" value='1' checked> <a href="#" class="far fa-thumbs-up"></a>
 
-          <input type="radio" id="vote" name="vote" value='2' checked> <a href="#" class="far fa-thumbs-down"></a>
+          <input type="radio" id="vote" name="val" value='2' checked> <a href="#" class="far fa-thumbs-down"></a>
         </label>
       </div>
       

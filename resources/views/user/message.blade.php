@@ -7,7 +7,7 @@ Message
 @section('content')
 <div style="margin-left:15%">
 <form method="post">
-
+<input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="w3-container w3-light-grey">
 <nav class="navbar navbar-light bg-light justify-content-between">
 	  <a class="navbar-brand" href="/user/viewEvents">Message</a>
@@ -17,7 +17,7 @@ Message
 
 
 <div class="w3-container" align="center">
-	<input class="btn btn-dark" type="button" name="click" id="load" value="Chat with UserSupport">
+	<input class="btn btn-success" type="button" name="click" id="load" value="Chat with UserSupport">
     <div class="container" id="allEvents">    
 	  <table class="table table-hover" id="events" >
 
@@ -43,18 +43,20 @@ $( document ).ready(function() {
 	
 	// DO GET
 	function ajaxGet(){
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
 			type     : "GET",
             url      : "/user/view",
+            data     : {_token: CSRF_TOKEN},
             datatype : 'json',
             
 			success: function(result){
 				$('#allEvents table').empty();
-				$.each(result, function(i, result){
+				$.each(JSON.parse(result), function(i, result){
 					$('#allEvents #events').append(
 
 				      "<tr>"+
-			          "<td rowspan='3' height='150px' width='150px'><img height='150px' src='/abc/img/"+result.image+"'></td>"+
+			          "<td rowspan='3' height='150px' width='150px'><img height='150px' src='/img/"+result.image+"'></td>"+
 			          "<td colspan='2'>" + result.email + "</td>" +
 			          "</tr>"+
 			          "<tr>"+
@@ -63,7 +65,7 @@ $( document ).ready(function() {
 			          "</tr>"+
 			          "<tr>"+
 			          "<td align='right' colspan='2'>"+
-			          "<a class='btn btn-success' href='/user/messageToUserSupport/"+result.id+"'>Chat</a>"+
+			          "<a class='btn btn-success' href='/messageToUserSupport/"+result.id+"')}}'>Chat</a>"+
 			          "</td>"+
 			          "</tr>"
 

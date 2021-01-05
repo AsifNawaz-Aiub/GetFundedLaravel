@@ -26,7 +26,8 @@
   <a href="{{route('user.viewEvents')}}" class="w3-bar-item w3-button">View Events</a>
   <a href="{{route('user.createEvent')}}" class="w3-bar-item w3-button">Create Event</a>
   <a href="{{route('user.myEvent')}}" class="w3-bar-item w3-button">My Event</a>
-  <a href="/user/message" class="w3-bar-item w3-button">Message</a>
+  <a href="{{route('user.eventManager')}}" class="w3-bar-item w3-button">Event Manager</a>
+  <a href="{{route('user.message')}}" class="w3-bar-item w3-button">Message</a>
   <a href="/logout" class="w3-bar-item w3-button">logout</a>
 
 </div>

@@ -9,6 +9,7 @@ Event Donate
 	<div class="w3-container">
 <div class="container">    
 	  <form method="post">
+	  	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	  <table class="table table-hover">
 	    <tr>
 	      <th>Id</th>

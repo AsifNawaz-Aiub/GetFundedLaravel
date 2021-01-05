@@ -6,41 +6,85 @@ Message to User-support
 @endsection
 @section('content')
 <div style="margin-left:15%">
-	<div class="w3-container">
-<div class="container">    
-	  <form method="post">
-	  <table class="table table-hover">
-	  	 <tr>
-	      <th>Sender Id</th>
-	      <th>Message</th>
-	      <th>Created At</th>
 
-	  </tr>
+<div class="w3-container">
+    <div class="container">
+      <form method="post"> 
+      <input type="hidden" name="_token" value="{{csrf_token()}}">
+      <div class="container" id="allEvents">
+      <br>
+      <br>    
+      <table class="table table-hover">
+        <tr>
+          <th>CreatedAt</th>
+          <th>SenderId</th>
+          <th>MessageText</th>
+        </tr>
+        <tr>
+        	<td colspan="3"><input class="btn-sm btn-dark " type="button" name="click" id="AppEvents" value="Open Chat..."></td>
+        </tr>
+        <tbody id="events">
+          
+        </tbody>
+        <tr>
+          <td colspan="2"><input class="form-control" type="text" name="messageToUs"></td>
+          <td><input class="btn btn-info" type="submit" name="submit" value="Send...">
+            <a href="{{route('user.message')}}" class="btn btn-dark">Back</a>
+          </td>
 
-		<% for(var i=0; i< msgToUserlist.length; i++ ){ 
-		 %>
-		<tr>
-			<td><%= msgToUserlist[i].senderId %></td>
-			<td><%= msgToUserlist[i].messageText %></td>
-			<td width="350px" height="50px"><%= msgToUserlist[i].createdAt%></td>
-		</tr>
-		<% } %>
-	  	<tr>
-	  		<td colspan="3">
-	  			<input class="form-control mr-sm-2" name="messageToUs" type="text" placeholder="Message..." aria-label="Search">
-	  		</td>
-	  		<td>
-	  			<input type="submit" class="btn btn-primary" name="submit" value="Send">
-	  		    <a href="/user/message" class="btn btn-success">Back</a>
-
-	  		</td>
-	  	</tr>
-	  	
-	  </table>
-	  </form>
-	</div>
+        </tr>
+      </table>
+      </form>
+    </div>
+  </div>
 </div>
 
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<script>
+$( document ).ready(function() {
+  
+  // GET REQUEST
+  $("#AppEvents").click(function(event){
+        event.preventDefault();
+        console.log("Clicked");
+    ajaxGet();
+  });
+  
+  
+  // DO GET
+  function ajaxGet(){
+  	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+      type     : "GET",
+      url      : "/user/viewMessage",
+      data     : {_token: CSRF_TOKEN},
+      datatype : 'json',
+            
+      success: function(result){
+        $('#allEvents table').empty();
+        $.each(JSON.parse(result), function(i, result){
+          $('#allEvents #events').append(
+          "<tr>"+
+          "<td>"+result.createdAt+"'></td>"+
+          "<td>" + result.senderId + "</td>" +
+          "<td>" + result.messageText + "</td>" +
+          "</tr>"
+
+          )
+        });
+        console.log("Success: ", result);
+      },
+      error : function(e) {
+        $("#getfeed").html("<strong>Error</strong>");
+        console.log("ERROR: ", e);
+      }
+    }); 
+  }
+})
+</script>
 
 @endsection

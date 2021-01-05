@@ -9,6 +9,7 @@ Approve Donation
 <div class="w3-container">
 <div class="container">    
 	  <form method="post">
+	  	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	  <table  class="table table-hover">
 		<tr>
 			<th>Id</th>
@@ -19,16 +20,16 @@ Approve Donation
 	        <th>Action</th>
 		</tr>
 
-		@for($i=0; $i < count($donation); $i++)
+		@for($i=0; $i < count($approval); $i++)
 
 			<tr>
-				<td>{{$donation[$i]['id']}}</td>
-				<td>{{$donation[$i]['amount']}}</td>
-				<td>{{$donation[$i]['donorId']}}</td>
-				<td>{{$donation[$i]['donationMessage']}}</td>
-				<td>{{$donation[$i]['createdAt']}}</td>
+				<td>{{$approval[$i]['id']}}</td>
+				<td>{{$approval[$i]['amount']}}</td>
+				<td>{{$approval[$i]['donorId']}}</td>
+				<td>{{$approval[$i]['donationMessage']}}</td>
+				<td>{{$approval[$i]['createdAt']}}</td>
 				<td>
-				  <input class="btn btn-success" type="submit" name="submit" value="Approve">
+				  <a class="btn btn-success" href="{{route('user.acceptpage', $approval[$i]['id'])}}">Accept</a>
 			    </td>
 					
 			</tr>
@@ -37,7 +38,7 @@ Approve Donation
 
 
 	</table>
-	    <a href="{{route('user.myEvent')}}" class="btn btn-dark">Back</a>
+	    <a href="{{route('user.eventManager')}}" class="btn btn-dark">Back</a>
 	  </form>
 	</div>
 </div>
