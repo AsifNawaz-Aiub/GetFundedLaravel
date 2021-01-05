@@ -90,7 +90,7 @@ Route::group(['middleware'=>['sess']], function(){
 
         Route::get('/message',  'userController@message')->name('user.message');
         Route::get('/messageToUserSupport/{id}', 'userController@messagetoUsersupport')->name('user.messageToUserSupport');
-        Route::post('/messageToUserSupport/{id}' , 'userController@messagetousersupp');
+        Route::post('/messageToUserSupport/{id}' , 'userController@messagetousersupport');
         
         Route::get('/user/view', 'userController@messageWithU');
 
