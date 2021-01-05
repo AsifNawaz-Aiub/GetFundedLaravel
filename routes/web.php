@@ -86,15 +86,17 @@ Route::group(['middleware'=>['sess']], function(){
         Route::get('/addEventManager/{id}', ['uses'=> 'userController@addEventManager', 'as'=> 'user.addEventManager']);
         Route::post('/addEventManager/{id}', 'userController@updateEventManager');
 
+        Route::get('/addManager/{id},{eventId}', 'userController@addManager')->name('user.addManager');
+
         Route::get('/message',  'userController@message')->name('user.message');
-        Route::post('/messageToUserSupport' , 'userController@messagetousersupp');
+        Route::get('/messageToUserSupport/{id}', 'userController@messagetoUsersupport')->name('user.messageToUserSupport');
+        Route::post('/messageToUserSupport/{id}' , 'userController@messagetousersupp');
         
         Route::get('/user/view', 'userController@messageWithU');
 
-        Route::get('/messageToUserSupport/{id}', 'userController@messagetoUsersupport')->name('user.messageToUserSupport');
-        Route::get('/user/viewMessage', 'userController@viewMessage');
+        Route::get('/user/viewMessage/{id}', 'userController@viewMessage');
 
-        Route::get('/addManager/{id},{eventId}', 'userController@addManager')->name('user.addManager');
+        
 
 
     });
