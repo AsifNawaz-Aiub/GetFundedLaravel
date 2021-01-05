@@ -18,7 +18,7 @@ Create Event
 	  <h2>Create Event Form</h2>
 	  <form method="post">
 	    <div class="form-group">
-	      <label for="eventName">EventName:</label>
+	      <label for="eventName">Event Name:</label>
 	      <input type="text" class="form-control" id="eventName" placeholder="eventName..." name="eventName" value="{{old('eventName')}}">
 	    </div>
 	    <div class="form-group">
@@ -26,17 +26,17 @@ Create Event
 	      <input type="text" class="form-control" id="description" placeholder="description..." name="description" value="{{old('description')}}">
 	    </div>
 	    <div class="form-group">
-	      <label for="CategoryId">CategoryId:</label><br>
+	      <label for="CategoryId">Category Id:</label><br>
 			<input type="radio" name="categoryId" value="0"> Study 
 			<input type="radio" name="categoryId" value="1"> Health
 			<input type="radio" name="categoryId" value="2"> Social
 	    </div>
 	    <div class="form-group">
-	      <label for="eventName">GoalAmount:</label>
+	      <label for="eventName">Goal Amount:</label>
 	      <input type="text" class="form-control" id="goalAmount" placeholder="goalAmount..." name="goalAmount" value="{{old('goalAmount')}}">
 	    </div>
 	    <div class="form-group">
-	      <label for="eventName">GoalDate:</label>
+	      <label for="eventName">Goal Date:</label>
 	      <input type="date" class="form-control" id="goalDate" placeholder="goalDate..." name="goalDate" value="{{old('goalDate')}}">
 	    </div>
 	    <div class="form-group">
