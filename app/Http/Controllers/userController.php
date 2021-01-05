@@ -232,15 +232,15 @@ class userController extends Controller
     public function messagetoUsersupport(){
         return view('user.messageToUserSupport');
     }
-    public function messagetousersupp($id , userRequest $req){
+    public function messagetousersupp(Request $req , $id){
         $messagetous = new Message();
 
-                $messagetous->senderId     = $req->session()->get('id');
-                $messagetous->receiverId   = $id;
-                $messagetous->messageText  = $req->messageText;
-    
-                $messagetous->save();
-                return redirect()->route('user.messageToUserSupport');   
+        $messagetous->senderId     = $req->session()->get('id');
+        $messagetous->receiverId   = $id;
+        $messagetous->messageText  = $req->messageToUs;
+
+        $messagetous->save();
+        return redirect()->route('user.message');   
     }
 } 
 
