@@ -232,7 +232,7 @@ class userController extends Controller
     public function messagetoUsersupport(){
         return view('user.messageToUserSupport');
     }
-    public function messagetousersupp(Request $req , $id){
+    public function messagetousersupport($id , Request $req){
         $messagetous = new Message();
 
         $messagetous->senderId     = $req->session()->get('id');
