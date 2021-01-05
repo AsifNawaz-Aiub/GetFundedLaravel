@@ -16,9 +16,9 @@ Message to User-support
       <br>    
       <table class="table table-hover">
         <tr>
-          <th>CreatedAt</th>
-          <th>SenderId</th>
-          <th>MessageText</th>
+          <th>Created At</th>
+          <th>Sender Id</th>
+          <th>Message Text</th>
         </tr>
         <tr>
         	<td colspan="3"><input class="btn-sm btn-dark " type="button" name="click" id="AppEvents" value="Open Chat..."></td>
@@ -28,7 +28,7 @@ Message to User-support
         </tbody>
         <tr>
           <td colspan="2"><input class="form-control" type="text" name="messageToUs"></td>
-          <td><input class="btn btn-info" type="submit" name="submit" value="Send...">
+          <td><input class="btn btn-info" type="submit" name="submit" value="Send messages...">
             <a href="{{route('user.message')}}" class="btn btn-dark">Back</a>
           </td>
 
@@ -60,7 +60,7 @@ $( document ).ready(function() {
   	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
       type     : "GET",
-      url      : "/user/viewMessage",
+      url      : "/user/viewMessage/:id",
       data     : {_token: CSRF_TOKEN},
       datatype : 'json',
             
