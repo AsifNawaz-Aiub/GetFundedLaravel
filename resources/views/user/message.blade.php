@@ -68,7 +68,6 @@ $( document ).ready(function() {
 			          "<a class='btn btn-success' href='/messageToUserSupport/"+result.id+"')}}'>Chat</a>"+
 			          "</td>"+
 			          "</tr>"
-
                 )
 				});
 				console.log("Success: ", result);
