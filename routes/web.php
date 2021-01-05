@@ -99,13 +99,18 @@ Route::group(['middleware'=>['sess']], function(){
 Route::group(['middleware'=>['sess']], function(){
     Route::group(['middleware'=>['userSupport']], function(){
         Route::get('/userSupport', 'userSupportController@index')->name('userSupport.index');
-        Route::get('/allUser', ['uses'=> 'userSupportController@userlist', 'as'=> 'userSupport.allUser']);
-        Route::get('/userSupportProfile', 'userSupportController@profile')->name('userSupport.userSupportProfile');
-        Route::get('/userEvents/{id}', ['uses'=> 'userSupportController@userEventlist', 'as'=> 'userSupport.userEvents']);
-        Route::get('/userDetails/{id}', 'userSupportController@userEventDetails')->name('userSupport.userDetails');
-        Route::get('/viewEvents', ['uses'=> 'userSupportController@eventlist', 'as'=> 'userSupport.viewEvents']);
-        Route::get('/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
-        Route::get('/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+        Route::get('/userSupport/allUser', ['uses'=> 'userSupportController@userlist', 'as'=> 'userSupport.allUser']);
+        Route::get('/userSupport/userSupportProfile', 'userSupportController@profile')->name('userSupport.userSupportProfile');
+        Route::get('/userSupport/userEvents/{id}',['uses'=>'userSupportController@userEventlist','as'=>'userSupport.userEvents']);
+        Route::get('/userSupport/userDetails/{id}', 'userSupportController@userEventDetails')->name('userSupport.userDetails');
+        Route::get('/userSupport/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
+        Route::get('/userSupport/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+        Route::post('/userSupport/editProfile', 'userSupportController@profileUpdate');
+        Route::get('/userSupport/view', 'userSupportController@viewEvent');
+        Route::get('/userSupport/message',['uses'=>'userSupportController@messageUser','as'=>'userSupport.message']);
+        Route::get('/userSupport/viewEvents', 'userSupportController@event')->name('userSupport.viewEvents');
+        Route::get('/userSupport/messageView/{id}', 'userSupportController@messageView');
+        Route::get('/userSupport/messageBox/{id}', 'userSupportController@messageBoxUser')->name('userSupport.messageBox');
     });
     
 });
