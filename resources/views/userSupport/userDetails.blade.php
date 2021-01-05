@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <title>My Profile</title>
@@ -59,6 +58,4 @@ button:hover, a:hover {
 
 </body>
 
-
-</body>
 </html>

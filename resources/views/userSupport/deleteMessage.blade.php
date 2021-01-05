@@ -35,7 +35,6 @@ a {
   font-size: 22px;
   color: black;
 }
-
 button:hover, a:hover {
   opacity: 0.7;
 }
