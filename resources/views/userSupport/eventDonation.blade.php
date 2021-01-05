@@ -3,7 +3,7 @@
 <title>Event Donation</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="/abc/css/userSupport.css">
+<link rel="stylesheet" type="text/css" href="/css/userSupport.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -39,15 +39,15 @@
 			    <th>Donation Message</th>
 			    <th>CreatedAt</th>
 			  </tr>
-			  <% for(var i=0; i< donationlist.length; i++ ){ %>
-			  <tr>
-				<td><%= donationlist[i].id %></td>
-				<td><%= donationlist[i].amount %></td>
-				<td><%= donationlist[i].donorId %></td>
-				<td><%= donationlist[i].donationMessage %></td>
-				<td><%= donationlist[i].createdAt.toDateString() %></td>
-			  </tr>
-			  <% } %>
+			  @for($i=0; $i < count($donationlist); $i++)
+	          <tr id="rows">
+	            <td>{{$donationlist[$i]['id']}}</td>
+	            <td>{{$donationlist[$i]['amount']}}</td>
+	            <td>{{$donationlist[$i]['donorId']}}</td>
+	            <td>{{$donationlist[$i]['donationMessage']}}</td>
+	            <td>{{$donationlist[$i]['createdAt.toDateString()']}}</td>
+	          </tr>
+		        @endfor
 			  <tr>
 			  	<td><input class="form-control" type="text" placeholder="Amount" name="amount" required /></td>
 			  	<td colspan="3"><input class="form-control" type="text" placeholder="Donation Message" name="donationMessage" required>

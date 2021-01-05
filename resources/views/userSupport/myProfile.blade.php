@@ -56,7 +56,7 @@ button:hover, a:hover {
     <a href="https://www.facebook.com/shahriar.isha"><i class="fa fa-facebook"></i></a> 
   </div>
   <a href="{{route('userSupport.editProfile')}}" id="dd">Edit</a><hr>
-  <a href="/userSupport" id="dd">Home</a>
+  <a href="{{route('userSupport.index')}}" id="dd">Home</a>
 </div>
 
 </body>

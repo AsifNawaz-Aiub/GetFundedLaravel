@@ -51,6 +51,37 @@ class userSupportController extends Controller
 
         return redirect()->route('userSupport.myProfile');
     }
+    public function viewEvent(){
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/userSupport/view');
+       
+      $data=$res->getBody();
+
+    return response($data);
+    }
+    public function event(){
+        return view('userSupport.viewEvents');
+    }
+    public function messageUser(){
+        $userlist = User::all();
+        return view('userSupport.message')->with('userlist', $userlist);
+    }
+    public function messageBoxUser($id){
+        return view('userSupport.messageBox')->with('userId', $id);
+    }
+    public function messageView($id){
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://127.0.0.1:4000/userSupport/messageView/'.$id);
+       
+      $data=$res->getBody();
+
+    return response($data);
+    }
+    public function allDonation($id){
+        $donationlist = Donation::whereIn('eventId', [$id])->get();
+        return view('userSupport.eventDonation')->with('donationlist', $donationlist);
+    } 
+
 
 
 }

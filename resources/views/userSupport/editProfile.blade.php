@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="/abc/css/userSupport.css">
+<link rel="stylesheet" type="text/css" href="/css/userSupport.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -72,7 +72,7 @@ button:hover, a:hover {
     
   </div>
   <p><input type="submit" name="submit" value="Done" id="dd" ></p>
-  <a id="dd" href="/userSupport/myProfile">Back</a>
+  <a id="dd" href="{{route('userSupport.myProfile')}}">Back</a>
 </div>
 </form>
 <script type="text/javascript">
