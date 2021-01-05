@@ -55,10 +55,10 @@
             <p>or login with</p>
           </div>
           <div class="d-flex flex-row justify-content-around">
-            <button type="button" class="btn btn-outline-primary w-25 mx-1">Facebook</button>
-            <button type="button" class="btn btn-outline-danger w-25 mx-1">Google</button>
-            <button type="button" class="btn btn-outline-dark w-25 mx-1">Github</button>
-            <button type="button" class="btn btn-outline-primary w-25 mx-1">Twitter</button>
+            <button type="button" class="btn btn-outline-primary w-25 mx-1" onclick="location.href = '/login/facebook';">Facebook</button>
+            <button type="button" class="btn btn-outline-danger w-25 mx-1" onclick="location.href = '/login/google';">Google</button>
+            <button type="button" class="btn btn-outline-dark w-25 mx-1" onclick="location.href = '/login/github';">Github</button>
+            <button type="button" class="btn btn-outline-primary w-25 mx-1" onclick="location.href = '/login/twitter';">Twitter</button>
           </div>
         </div>
         <div class="text-center mt-3">
