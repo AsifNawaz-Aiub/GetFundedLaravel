@@ -101,6 +101,64 @@ Route::group(['middleware'=>['sess']], function(){
     });
     
 });
+           
+           Route::group(['middleware'=>['sess']], function(){
+    Route::group(['middleware'=>['user']], function(){
+        Route::get('/user', 'userController@index')->name('user.index');
+
+        Route::get('/viewEvents', ['uses'=> 'userController@eventlist', 'as'=> 'user.viewEvents']);
+
+        Route::get('/createEvent', 'userController@createEvent')->name('user.createEvent');
+        Route::post('/createEvent', 'userController@store');
+
+       
+        Route::get('/myEvent', ['uses'=> 'userController@eventlistById', 'as'=> 'user.myEvent']);
+        Route::get('/eventEdit/{id}', 'userController@eventEdit')->name('user.eventEdit'); 
+        Route::post('/eventEdit/{id}', 'userController@eventUpdated'); 
+
+        Route::get('/eventDelete/{id}', 'userController@eventDelete')->name('user.eventDelete');
+        Route::post('/eventDelete/{id}', 'userController@eventDestroyed');
+
+        Route::get('/eventDonate/{id}', ['uses'=> 'userController@eventdonate', 'as'=> 'user.eventDonate']);
+
+        Route::get('/approveDonation/{id}','userController@approve')->name('user.approveDonation');
+
+        Route::get('/acceptpage/{id}','userController@acceptdonate')->name('user.acceptpage');
+        Route::post('/acceptpage/{id}','userController@approved');
+
+        Route::get('/donateToEvent/{id}', ['uses'=> 'userController@donateToEvent', 'as'=> 'user.donateToEvent']);
+        Route::post('/donateToEvent/{id}', 'userController@donatedToEvent');
+        
+        Route::get('/voteToEvent/{id}', ['uses'=> 'userController@voteToEvent', 'as'=> 'user.voteToEvent']);
+        Route::post('/voteToEvent/{id}', 'userController@insertVote');
+
+        Route::get('/commentToEvent/{id}', ['uses'=> 'userController@commentToEvent', 'as'=> 'user.commentToEvent']);
+        Route::post('/commentToEvent/{id}', 'userController@commentedToEvent');
+        
+        Route::get('/reportToEvent/{id}', ['uses'=> 'userController@reportToEvent', 'as'=> 'user.reportToEvent']);
+        Route::post('/reportToEvent/{id}',  'userController@reportedToEvent');
+    
+        Route::get('/eventManager', ['uses'=> 'userController@eventManagers', 'as'=> 'user.eventManager']);
+       //Route::post('/reportToEvent/{id}',  'userController@reportedToEvent');
+
+        Route::get('/addEventManager/{id}', ['uses'=> 'userController@addEventManager', 'as'=> 'user.addEventManager']);
+        Route::post('/addEventManager/{id}', 'userController@updateEventManager');
+
+        Route::get('/addManager/{id},{eventId}', 'userController@addManager')->name('user.addManager');
+
+        Route::get('/message',  'userController@message')->name('user.message');
+        Route::get('/messageToUserSupport/{id}', 'userController@messagetoUsersupport')->name('user.messageToUserSupport');
+        Route::post('/messageToUserSupport/{id}' , 'userController@messagetousersupport');
+        
+        Route::get('/user/view', 'userController@messageWithU');
+
+        Route::get('/user/viewMessage/{id}', 'userController@viewMessage');
+
+        
+
+
+    });
+});
 
 //SOCIAL LOGINS
 
