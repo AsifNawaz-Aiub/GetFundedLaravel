@@ -5,8 +5,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\modifyRequest;
 use App\Http\Requests\donateRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 use Validator;
+use File;
 use App\User;
 use App\Event;
 use App\Message;
@@ -34,11 +36,27 @@ class moderatorController extends Controller
         
     }
 
-    public function approved($id){
+    public function approved($id, Request $req){
+       $arr= array('EventId' => $id, 'User' => 'Modeartor', 'ModerartorId' => $req->session()->get('id') );
+         
+       
+        $data = json_encode($arr);
+        // $file = 'pendingEvents.json';
+        // $destinationPath=public_path()."/upload/json/";
+        // if (!is_dir($destinationPath)) {  mkdir($destinationPath,0777,true);  }
+        // File::put($destinationPath.$file,$data);
+        //Storage::disk('local')->put('dataaa.json',$data);
+        $contactInfo = Storage::disk('local')->exists('dataaa.json') ? json_decode(Storage::disk('local')->get('dataaa.json'),$assoc = TRUE) : [];
+        array_push($arr,$contactInfo);
+        //array_merge($arr,$contactInfo);
+       // $arr=$arr+$contactInfo;
+        Storage::disk('local')->put('dataaa.json', json_encode($arr));
+       //if(File::get($destinationPath.$file)){ $data2 =  json_decode(Storage::disk('public')->get('pendingEvents.json'));  array_push($arr,$data);  File::put($destinationPath.$file,json_encode($arr)); };
+
         $event = Event::find($id);
 
-        $event->isApproved = 1;
-        $event->save();
+         $event->isApproved = 1;
+         $event->save();
         $req->session()->keep(['msg', 'msg2', 'msg3', 'msg4', 'msg5']);
         $req->session()->flash('msg5', 'Approved an Event');
         return redirect('/moderator');

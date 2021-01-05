@@ -79,7 +79,6 @@ Route::group(['middleware'=>['sess']], function(){
 
 
 
-
     
 // Route::get('/api/{id}', function ($id) {
 
