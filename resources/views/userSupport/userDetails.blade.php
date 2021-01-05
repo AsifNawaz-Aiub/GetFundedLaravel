@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <title>My Profile</title>
@@ -55,6 +56,9 @@ button:hover, a:hover {
   </div>
   <a href="{{route('userSupport.allUser')}}" id="dd">Back</a>
 </div>
+
+</body>
+
 
 </body>
 </html>
