@@ -44,9 +44,9 @@ My Events
 				<td>{{$events[$i]['goalDate']}}</td>
 				<td width="100px">
 				  	<a class="btn btn-primary" href="{{route('user.eventEdit', $events[$i]['id'])}}">Edit</a> 
-			  		<a class="btn btn-dark" href="{{route('user.eventDelete', $events[$i]['id'])}}">Delete</a>  
+			  		<a class="btn btn-danger" href="{{route('user.eventDelete', $events[$i]['id'])}}">Delete</a>  
 			  		<a class="btn btn-info" href="{{route('user.eventDonate', $events[$i]['id'])}}">Donation</a>
-			  		<a class="btn btn-danger" href="{{route('user.addEventManager', $events[$i]['id'])}}">Event Manager</a>  
+			  		<a class="btn btn-success" href="{{route('user.addEventManager', $events[$i]['id'])}}">Event Manager</a>  
 			    </td>
 					
 			</tr>

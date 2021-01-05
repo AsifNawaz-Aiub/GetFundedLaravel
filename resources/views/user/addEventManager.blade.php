@@ -55,7 +55,7 @@ Add Event Manager
 			<td></td>
 			<td><input class="form-control" type="text" name="userId" placeholder="Enter a user id..."></td>
 			<td>
-				<input class="btn btn-success" type="submit" name="submit" value="Add">
+				<input class="btn btn-success" type="submit" name="submit" value="Add Event manager">
 			</td>
 		</tr>
 
