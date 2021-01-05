@@ -16,9 +16,10 @@ Message to User-support
       <br>    
       <table class="table table-hover">
         <tr>
-          <th>Created At</th>
           <th>Sender Id</th>
+          <th>Reciever Id</th>
           <th>Message Text</th>
+          <th>Created At</th>
         </tr>
         <tr>
         	<td colspan="3"><input class="btn-sm btn-dark " type="button" name="click" id="AppEvents" value="Open Chat..."></td>
@@ -69,9 +70,10 @@ $( document ).ready(function() {
         $.each(JSON.parse(result), function(i, result){
           $('#allEvents #events').append(
           "<tr>"+
-          "<td>"+result.createdAt+"'></td>"+
           "<td>" + result.senderId + "</td>" +
+          "<td>" + result.receiverId + "</td>" +
           "<td>" + result.messageText + "</td>" +
+          "<td>"+  result.createdAt+"'></td>"+
           "</tr>"
 
           )
