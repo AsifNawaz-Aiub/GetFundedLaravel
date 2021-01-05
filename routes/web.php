@@ -89,30 +89,6 @@ Route::group(['middleware'=>['sess']], function(){
     });
 });
 
-
-
-
-    
-// Route::get('/api/{id}', function ($id) {
-
-   
-//     $client = new \GuzzleHttp\Client();
-//     $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/msg/'.$id.'/'.$sid);
-//     //echo $res->getStatusCode();
-//     // "200"
-//     //echo $res->getHeader('content-type')[0];
-//     // 'application/json; charset=utf8'
-//    //echo $res->getBody();
-   
-//   $d=$res->getBody();
-
-
-// //echo $d;
-
-// return response($d);
-
-    
-// });
 Route::group(['middleware'=>['sess']], function(){
     Route::group(['middleware'=>['userSupport']], function(){
         Route::get('/userSupport', 'userSupportController@index')->name('userSupport.index');
@@ -133,3 +109,8 @@ Route::group(['middleware'=>['sess']], function(){
     });
     
 });
+
+//SOCIAL LOGINS
+
+Route::get('/login/google', 'loginController@google');
+Route::get('/login/google/redirect', 'loginController@googleRedirect');

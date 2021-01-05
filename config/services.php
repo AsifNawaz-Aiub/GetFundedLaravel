@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [
+        'client-id' -> env('GOOGLE_CLIENT_ID'),
+        'client-secret' -> env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL')
+    ]
+
 ];
