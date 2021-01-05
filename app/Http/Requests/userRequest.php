@@ -34,11 +34,11 @@ class userRequest extends FormRequest
 
     public function messages(){
         return [
-            'eventName.required'   => "....................................................event name can't left empty....",
-            'description.required' => "....................................................description can't left empty....",
-            'categoryId.required'  => "....................................................category id can't left empty....",
-            'goalAmount.required'  => "....................................................goal amount can't left empty....",
-            'goalDate.required'    => "....................................................goal date can't left empty....",
+            'eventName.required'   => "..............................................       event name can't left empty....",
+            'description.required' => "..............................................       description can't left empty....",
+            'categoryId.required'  => "..............................................       category id can't left empty....",
+            'goalAmount.required'  => "..............................................       goal amount can't left empty....",
+            'goalDate.required'    => "..............................................       goal date can't left empty....",
            
 
         ];
