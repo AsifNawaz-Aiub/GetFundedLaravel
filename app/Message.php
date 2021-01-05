@@ -10,6 +10,7 @@ class Message extends Model
     protected $primaryKey = "id";
     //public $timestamps = false;
 
-   const CREATED_AT = "createdAt";
-   const UPDATED_AT = "updatedAt";
+    const CREATED_AT = "createdAt";
+    const UPDATED_AT = "updatedAt";
+
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<title>My Profile</title>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 315px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+#dd {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 300px;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center">User Profile</h2>
+<div class="card">
+  <img src="/abc/img/{{$image}}" style="width:100%">
+  <h1>{{$name}}</h1>
+  <p class="title">{{$userName}}</p>
+  <p class="title">{{$email}}</p>
+  {{$userType}}>
+  <div style="margin: 24px 0;">
+    <!-- Total OF Eventes:<%=events[0].number%> -->
+  </div>
+  <a href="/userSupport/allUser" id="dd">Back</a>
+</div>
+
+</body>
+</html>
