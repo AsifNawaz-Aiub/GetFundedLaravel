@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <title>Event Donation</title>
@@ -8,10 +10,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+  #card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 315px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  float: right;
+  background-color: lightgray;
+}
+#dd {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 300px;
+  font-size: 18px;
+}
+</style>
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline">
     
@@ -33,8 +58,13 @@
   <h2>Welcome To User Support Page...</h2>
   <div id="card">
     <h3 id="dd">Notification</h3>
-    <p><%= success %></p>
-      
+    <table class="table table-hover" id="events">
+        @for($i=0; $i < count($notification); $i++)
+          <tr id="rows">
+            <td>{{$notification[$i]['message']}}</td>
+            <td><a class="btn btn-outline-dark btn-sm" href="{{$notification[$i]['link']}}">Go to</a></td>
+        @endfor
+      </table>
   </div>
   
   
@@ -47,4 +77,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

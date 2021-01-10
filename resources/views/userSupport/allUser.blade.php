@@ -15,7 +15,7 @@
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
@@ -33,8 +33,8 @@
 </div>
 <div style="margin-left:15%; ">
   <div class="w3-container">
-	    <div class="container" id="card">    
-			<table class="table table-hover" id="events" style="margin-top: 20%">
+	    <div class="container">    
+			<table class="table table-hover" id="events">
 			  <tr>
           <td>Id</td>
           <td>name</td>
@@ -57,7 +57,7 @@
 			</table>
 			<a id="dlink"  style="display:none;"></a>
 
-      <input class="btn-sm btn-success btn-block" type="button" onclick="tableToExcel('events', 'users', 'allUsers.xls')" value="Export to Excel">
+      <input class="btn-sm btn-success" type="button" onclick="tableToExcel('events', 'users', 'allUsers.xls')" value="Export to Excel">
 		</div>
 	</div>
 

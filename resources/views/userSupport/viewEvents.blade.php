@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <title>View Events</title>
@@ -12,7 +13,7 @@
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline" >
     <input class="form-control mr-sm-2" name="search" placeholder="Search" id="eventName">
@@ -33,7 +34,11 @@
 </div>
 <div style="margin-left:15%; margin-top: 2%; ">
   <div class="w3-container">
-  	<input class="btn-sm btn-dark btn-block" type="button" name="click" id="AppEvents" value="See All Approved Events">
+
+    <h3>You can donate from here.</h3>
+    <p>And also you can see all approved events.</p>
+
+  	<input class="btn-sm btn-dark btn" type="button" name="click" id="AppEvents" value="See All Approved Events">
 	    <div class="container" id="allEvents">
       <br>
       <br>    

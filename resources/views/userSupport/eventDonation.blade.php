@@ -11,7 +11,7 @@
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -31,6 +31,7 @@
   <div class="w3-container">
 	    <div class="container">
 	    <form method="post">
+	    	<input type="hidden" name="_token" value="{{csrf_token()}}">
 		    <table class="table table-hover">
 			  <tr>
 			    <th width="15%">id</th>
@@ -45,19 +46,27 @@
 	            <td>{{$donationlist[$i]['amount']}}</td>
 	            <td>{{$donationlist[$i]['donorId']}}</td>
 	            <td>{{$donationlist[$i]['donationMessage']}}</td>
-	            <td>{{$donationlist[$i]['createdAt.toDateString()']}}</td>
+	            <td>{{$donationlist[$i]['createdAt']}}</td>
 	          </tr>
 		        @endfor
 			  <tr>
-			  	<td><input class="form-control" type="text" placeholder="Amount" name="amount" required /></td>
-			  	<td colspan="3"><input class="form-control" type="text" placeholder="Donation Message" name="donationMessage" required>
+
+			  	<td><input class="form-control" type="text" placeholder="Amount" name="amount"/></td>
+			  	<td colspan="3"><input class="form-control" type="text" placeholder="Donation Message" name="donationMessage">
 			  	</td>
 			  	<td>
-			  	<input type="submit" name="donate" class="btn btn-dark" value="Donate">
+			  	<input type="submit" name="submit" class="btn btn-dark" value="Donate">
 			  	</td>
 
 			  </tr>
 			</table>
+			@if (count($errors) > 0)
+	          <p class="text-danger">
+	            @foreach ($errors->all() as $error)
+	              {{ $error }}<br>
+	            @endforeach
+	          </p>
+	        @endif
 		</form>
 		</div>
 	</div>
@@ -69,5 +78,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

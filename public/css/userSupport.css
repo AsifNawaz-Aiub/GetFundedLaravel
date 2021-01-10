@@ -1,25 +1,4 @@
-<style type="text/css">
-#card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 315px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  float: right;
-  background-color: lightgray;
-}
-#dd {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 300px;
-  font-size: 18px;
-}
+
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -74,4 +53,3 @@ div.content {
     float: none;
   }
 }
-</style>

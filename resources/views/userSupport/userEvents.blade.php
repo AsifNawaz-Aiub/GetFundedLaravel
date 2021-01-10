@@ -11,7 +11,7 @@
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -33,7 +33,7 @@
 			<table class="table table-hover">
 			  @for($i=0; $i < count($userEventlist); $i++)
 			  <tr>
-			  	<td rowspan="3" width="250px" height="150px"><img height="150px" width="250px" src="/img/{{$userEventlist}}"></td>
+			  	<td rowspan="3" width="250px" height="150px"><img height="150px" width="250px" src="/img/{{$userEventlist[$i]['eventPicture']}}"></td>
 			  	<td colspan="2">{{$userEventlist[$i]['description']}}</td>
 			  </tr>
 			  <tr>
@@ -58,4 +58,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
