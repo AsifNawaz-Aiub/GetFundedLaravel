@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>My Profile</title>
+<title>Delete</title>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -46,12 +46,12 @@ button:hover, a:hover {
 <h2 style="text-align:center">Delete Message</h2>
 <div class="card">
   <form method="post">
-  
-  <p class="title">Are you sure deleting this message?</p>
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
+  <p class="title" style="color: red">Are you sure deleting this message?</p>
   <p class="title"></p>
   
   <div style="margin: 24px 0;">
-    <%= messagelist[0].messageText%>
+    {{$messageText}}
   </div>
   <input type="submit" name="submit" value="Delete" id="dd">
   </form>

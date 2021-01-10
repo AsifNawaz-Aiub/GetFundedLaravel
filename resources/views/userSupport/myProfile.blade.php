@@ -46,7 +46,7 @@ button:hover, a:hover {
 <h2 style="text-align:center">My Profile</h2>
 
 <div class="card">
-  <img src="{{$image}}" style="width:100%">
+  <img src="/img/{{$image}}" style="width:100%">
   <h1>{{$name}}</h1>
   <p class="title">{{$email}}</p>
   <div style="margin: 24px 0;">

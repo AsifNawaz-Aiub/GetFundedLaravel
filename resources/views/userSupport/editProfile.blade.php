@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="/abc/css/userSupport.css">
+<link rel="stylesheet" type="text/css" href="/css/userSupport.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -51,7 +51,7 @@ button:hover, a:hover {
 <form method="post" enctype="multipart/form-data">
 <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="card">
-  <img src="/abc/img/{{$image}}" id="img" style="width:100%">
+  <img src="/img/{{$image}}" id="img" style="width:100%">
   <br>
   <p class="title">Name</p>
   <input class="form-control" type="text" name="name" placeholder="name" value="{{$name}}">

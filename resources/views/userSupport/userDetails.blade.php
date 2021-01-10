@@ -45,15 +45,15 @@ button:hover, a:hover {
 
 <h2 style="text-align:center">User Profile</h2>
 <div class="card">
-  <img src="/abc/img/{{$image}}" style="width:100%">
+  <img src="/img/{{$image}}" style="width:100%">
   <h1>{{$name}}</h1>
   <p class="title">{{$userName}}</p>
   <p class="title">{{$email}}</p>
-  {{$userType}}>
+  {{$userType}}
   <div style="margin: 24px 0;">
     <!-- Total OF Eventes:<%=events[0].number%> -->
   </div>
-  <a href="/userSupport/allUser" id="dd">Back</a>
+  <a href="{{route('userSupport.allUser')}}" id="dd">Back</a>
 </div>
 
 </body>

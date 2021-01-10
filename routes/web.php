@@ -52,22 +52,6 @@ Route::group(['middleware'=>['sess']], function(){
         Route::post('/admin/users/edit/{id}', 'adminController@updateUser')->name('admin.updateUser');
         Route::get('/admin/users/delete/{id}', 'adminController@deleteUser')->name('admin.deleteUser');
 
-        Route::get('/admin/events', 'adminController@events')->name('admin.events');
-        Route::get('/admin/events/view/{id}', 'adminController@viewEvent')->name('admin.viewEvent');
-        Route::get('/admin/events/approve/{id}', 'adminController@approveEvent')->name('admin.approveEvent');
-        Route::get('/admin/events/decline/{id}', 'adminController@declineEvent')->name('admin.declineEvent');
-        Route::get('/admin/events/edit/{id}', 'adminController@eventsEdit')->name('admin.eventsEdit');
-        Route::post('/admin/events/edit', 'adminController@updateEvent')->name('admin.updateEvent');
-        Route::get('/admin/events/delete/{id}', 'adminController@deleteEvent')->name('admin.deleteEvent');
-        Route::get('/admin/events/donate/{id}', 'adminController@donateEvent')->name('admin.donateEvent');
-        Route::post('/admin/events/donate/{id}', 'adminController@donateToEvent')->name('admin.donateToEvent');
-
-        Route::get('/admin/messages', 'adminController@messages')->name('admin.messages');
-        Route::post('/admin/messages/send', 'adminController@sendMessage')->name('admin.sendMessage');
-        Route::get('/admin/messages/{id}', 'adminController@convoMessages')->name('admin.convoMessages');
-
-        Route::get('/admin/reports', 'adminController@reports')->name('admin.reports');
-        Route::post('/admin/reports/donations/download', 'adminController@donationsReportDownload')->name('admin.donationsReportDownload');
     });
 });
 
@@ -88,79 +72,57 @@ Route::group(['middleware'=>['sess']], function(){
     });
 });
 
+
+
+
+    
+// Route::get('/api/{id}', function ($id) {
+
+   
+//     $client = new \GuzzleHttp\Client();
+//     $res = $client->request('GET', 'http://127.0.0.1:4000/moderator/msg/'.$id.'/'.$sid);
+//     //echo $res->getStatusCode();
+//     // "200"
+//     //echo $res->getHeader('content-type')[0];
+//     // 'application/json; charset=utf8'
+//    //echo $res->getBody();
+   
+//   $d=$res->getBody();
+
+
+// //echo $d;
+
+// return response($d);
+
+    
+// });
 Route::group(['middleware'=>['sess']], function(){
     Route::group(['middleware'=>['userSupport']], function(){
-        Route::get('/userSupport', 'userSupportController@index')->name('userSupport.index');
-        Route::get('/allUser', ['uses'=> 'userSupportController@userlist', 'as'=> 'userSupport.allUser']);
-        Route::get('/userSupportProfile', 'userSupportController@profile')->name('userSupport.userSupportProfile');
-        Route::get('/userEvents/{id}', ['uses'=> 'userSupportController@userEventlist', 'as'=> 'userSupport.userEvents']);
-        Route::get('/userDetails/{id}', 'userSupportController@userEventDetails')->name('userSupport.userDetails');
-        Route::get('/viewEvents', ['uses'=> 'userSupportController@eventlist', 'as'=> 'userSupport.viewEvents']);
-        Route::get('/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
-        Route::get('/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+        Route::get('/userSupport', ['uses'=> 'userSupportController@index', 'as'=> 'userSupport.index']);
+        Route::get('/userSupport/allUser', ['uses'=> 'userSupportController@userlist', 'as'=> 'userSupport.allUser']);
+        Route::get('/userSupport/userSupportProfile', 'userSupportController@profile')->name('userSupport.userSupportProfile');
+        Route::get('/userSupport/userEvents/{id}',['uses'=>'userSupportController@userEventlist','as'=>'userSupport.userEvents']);
+        Route::get('/userSupport/userDetails/{id}', 'userSupportController@userEventDetails')->name('userSupport.userDetails');
+        Route::get('/userSupport/myProfile', 'userSupportController@profile')->name('userSupport.myProfile');
+        Route::get('/userSupport/editProfile', 'userSupportController@editProfileShow')->name('userSupport.editProfile');
+        Route::post('/userSupport/editProfile', 'userSupportController@profileUpdate');
+        Route::get('/userSupport/view', 'userSupportController@viewEvent');
+        Route::get('/userSupport/message',['uses'=>'userSupportController@messageUser','as'=>'userSupport.message']);
+        Route::get('/userSupport/viewEvents', 'userSupportController@event')->name('userSupport.viewEvents');
+        Route::get('/userSupport/messageView/{id}', 'userSupportController@messageView');
+        Route::get('/userSupport/messageBox/{id}',['uses'=>'userSupportController@messageBoxUser','as'=>'userSupport.messageBox']);
+        Route::get('/userSupport/eventDonation/{id}',['uses'=>'userSupportController@allDonation','as'=>'userSupport.eventDonation']);
+        Route::post('/userSupport/eventDonation/{id}', 'userSupportController@donatedToEvent');
+        Route::post('/userSupport/messageBox/{id}', 'userSupportController@sendMessage');
+        Route::post('/userSupport/allUser', 'userSupportController@collection');
+        Route::post('/userSupport/deleteMessage/{id}', 'userSupportController@messageDestroyed');
+        Route::get('/userSupport/deleteMessage/{id}', 'userSupportController@dMessage')->name('userSupport.deleteMessage');
+
+        Route::get('/userSupport/download', function(){
+            return Excel::download(new Userexport, 'users.xlsx');
+
+        });
+        
     });
     
 });
-           
-           Route::group(['middleware'=>['sess']], function(){
-    Route::group(['middleware'=>['user']], function(){
-        Route::get('/user', 'userController@index')->name('user.index');
-
-        Route::get('/viewEvents', ['uses'=> 'userController@eventlist', 'as'=> 'user.viewEvents']);
-
-        Route::get('/createEvent', 'userController@createEvent')->name('user.createEvent');
-        Route::post('/createEvent', 'userController@store');
-
-       
-        Route::get('/myEvent', ['uses'=> 'userController@eventlistById', 'as'=> 'user.myEvent']);
-        Route::get('/eventEdit/{id}', 'userController@eventEdit')->name('user.eventEdit'); 
-        Route::post('/eventEdit/{id}', 'userController@eventUpdated'); 
-
-        Route::get('/eventDelete/{id}', 'userController@eventDelete')->name('user.eventDelete');
-        Route::post('/eventDelete/{id}', 'userController@eventDestroyed');
-
-        Route::get('/eventDonate/{id}', ['uses'=> 'userController@eventdonate', 'as'=> 'user.eventDonate']);
-
-        Route::get('/approveDonation/{id}','userController@approve')->name('user.approveDonation');
-
-        Route::get('/acceptpage/{id}','userController@acceptdonate')->name('user.acceptpage');
-        Route::post('/acceptpage/{id}','userController@approved');
-
-        Route::get('/donateToEvent/{id}', ['uses'=> 'userController@donateToEvent', 'as'=> 'user.donateToEvent']);
-        Route::post('/donateToEvent/{id}', 'userController@donatedToEvent');
-        
-        Route::get('/voteToEvent/{id}', ['uses'=> 'userController@voteToEvent', 'as'=> 'user.voteToEvent']);
-        Route::post('/voteToEvent/{id}', 'userController@insertVote');
-
-        Route::get('/commentToEvent/{id}', ['uses'=> 'userController@commentToEvent', 'as'=> 'user.commentToEvent']);
-        Route::post('/commentToEvent/{id}', 'userController@commentedToEvent');
-        
-        Route::get('/reportToEvent/{id}', ['uses'=> 'userController@reportToEvent', 'as'=> 'user.reportToEvent']);
-        Route::post('/reportToEvent/{id}',  'userController@reportedToEvent');
-    
-        Route::get('/eventManager', ['uses'=> 'userController@eventManagers', 'as'=> 'user.eventManager']);
-       //Route::post('/reportToEvent/{id}',  'userController@reportedToEvent');
-
-        Route::get('/addEventManager/{id}', ['uses'=> 'userController@addEventManager', 'as'=> 'user.addEventManager']);
-        Route::post('/addEventManager/{id}', 'userController@updateEventManager');
-
-        Route::get('/addManager/{id},{eventId}', 'userController@addManager')->name('user.addManager');
-
-        Route::get('/message',  'userController@message')->name('user.message');
-        Route::get('/messageToUserSupport/{id}', 'userController@messagetoUsersupport')->name('user.messageToUserSupport');
-        Route::post('/messageToUserSupport/{id}' , 'userController@messagetousersupport');
-        
-        Route::get('/user/view', 'userController@messageWithU');
-
-        Route::get('/user/viewMessage/{id}', 'userController@viewMessage');
-
-        
-
-
-    });
-});
-
-//SOCIAL LOGINS
-
-Route::get('/login/google', 'loginController@google');
-Route::get('/login/google/redirect', 'loginController@googleRedirect');

@@ -3,17 +3,18 @@
 <title>Message</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="/abc/css/userSupport.css">
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/userSupport.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <script src="jquery-3.5.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <section>
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Get Funded</a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
@@ -33,7 +34,7 @@
   <div class="w3-container">
 	    <div class="container">    
 			<table class="table table-hover" id="events">
-        <table class="table table-hover" id="events" style="margin-top: 20%">
+        <table class="table table-hover" id="events">
         <tr>
           <td>Id</td>
           <td>name</td>
@@ -47,7 +48,7 @@
             <td>{{$userlist[$i]['name']}}</td>
             <td>{{$userlist[$i]['email']}}</td>
             <td>
-              <a class="btn btn-dark" href="{{route('userSupport.messageBox', $userlist[$i]['id'])}}">Chat </a>
+              <a class="btn btn-dark" href="{{route('userSupport.messageBox',$userlist[$i]['id'])}}">Chat </a>
             </td>
           </tr>
         @endfor

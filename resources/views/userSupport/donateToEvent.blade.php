@@ -20,9 +20,10 @@
         <h4>Donate Form</h4>
         <br/>
         <form method="post">
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
           <input class="form-control" type="text" placeholder="Amount" name="amount"/><br />
           <textarea class="form-control" type="text" placeholder="Donation Message" name="donationMessage"></textarea><br>
-          <input type="submit" name="donate" class="btn-lg btn-dark btn-block" value="Donate">
+          <input type="submit" name="submit" class="btn-lg btn-dark btn-block" value="Donate">
           <a class="btn-lg btn-dark btn-block" href="/userSupport/viewEvents" align="center">Back</a>
         </form>
       </div>
