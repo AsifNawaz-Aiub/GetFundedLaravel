@@ -9,6 +9,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link href="{{ asset('/css/bootstrap-social.css') }}" rel="stylesheet" >
     <title>Login</title>
   </head>
   <body>
@@ -49,8 +50,19 @@
             <button class="btn-lg btn-dark btn-block" type="submit">Login</button
             ><br />
         </form>
-        <div class="text-center">
-          <a href="/signup">Create an account!</a>
+        <div class="social-buttons d-flex flex-column justify-content-center">
+          <div class="d-flex flex-row justify-content-center">
+            <p>or login with</p>
+          </div>
+          <div class="d-flex flex-row justify-content-around">
+            <button type="button" class="btn btn-outline-primary w-25 mx-1" onclick="location.href = '/login/facebook';">Facebook</button>
+            <button type="button" class="btn btn-outline-danger w-25 mx-1" onclick="location.href = '/login/google';">Google</button>
+            <button type="button" class="btn btn-outline-dark w-25 mx-1" onclick="location.href = '/login/github';">Github</button>
+            <button type="button" class="btn btn-outline-primary w-25 mx-1" onclick="location.href = '/login/twitter';">Twitter</button>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <a href="/signup">Don't have an account? Sign up!</a>
         </div>
       </div>
     </div>
